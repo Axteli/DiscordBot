@@ -20,6 +20,7 @@ client.on('message', (message) => {
          .setImage('https://cdn.discordapp.com/attachments/758707064251482162/758707300470095903/calque_patron.png')
          .setFooter('Infos tirées du fandom', 'https://cdn.discordapp.com/attachments/758707064251482162/759150748276621338/1_TtT_gbfvQ5LitUE9wfpkog.png')
     message.channel.send(monembed);
+    console.log('commande patron executé')
     }       
 })
 
@@ -30,6 +31,7 @@ client.on('message', (message) => {
          .setColor("#527a9e")
          .setDescription("Le <#756635002401194114> vous permet de générer n'importe quel forme ! De la plus farfelue au logo du jeu, tout est possible !\n[le générateur (clique ici!)](https://viewer.shapez.io/)")
     message.channel.send(monembed);
+    console.log('commande generateur executé');
     }       
 })
 
