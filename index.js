@@ -23,4 +23,14 @@ client.on('message', (message) => {
     }       
 })
 
+client.on('message', (message) => {
+    if (message.content === `${prefix}generateur`){
+        const monembed = new Discord.MessageEmbed()
+         .setTitle("générateur de forme")
+         .setColor("#527a9e")
+         .setDescription("Le <#756635002401194114> vous permet de générer n'importe quel forme ! De la plus farfelue au logo du jeu, tout est possible !\n[le générateur (clique ici!)](https://viewer.shapez.io/)")
+    message.channel.send(monembed);
+    }       
+})
+
 client.login(token);
