@@ -6,9 +6,10 @@ const client = new Discord.Client();
 
 client.once('ready', () => {
     console.log('Le bot est prêt à être utilisé !');
-    client.user.setActivity("team baguette!", {type: 'STREAMING'});
+    client.user.setActivity("Shapez.io", {type: 'PLAYING'});
 })
 
+//patron
 client.on('message', (message) => {
     if (message.content === `${prefix}patron`){
         const monembed = new Discord.MessageEmbed()
@@ -23,7 +24,7 @@ client.on('message', (message) => {
     console.log('commande patron executé')
     }       
 })
-
+//generateur
 client.on('message', (message) => {
     if (message.content === `${prefix}generateur`){
         const monembed = new Discord.MessageEmbed()
@@ -34,7 +35,7 @@ client.on('message', (message) => {
     console.log('commande generateur executé');
     }       
 })
-
+//poubelle
 client.on('message', (message) => {
     if (message.content === `${prefix}poubelle`){
         const poubelle = new Discord.MessageEmbed()
@@ -49,7 +50,7 @@ client.on('message', (message) => {
     console.log('commande poubelle executé');
     }       
 })
-
+//stockage
 client.on('message', (message) => {
     if (message.content === `${prefix}stockage`){
         const stockage = new Discord.MessageEmbed()
