@@ -1,69 +1,63 @@
-const Discord = require('discord.js');
+const Discord = require('discord.js')
+const log = console.log
 
-const { prefix, token } = require('./config.json');
+const bot = new Discord.Client();
 
-const client = new Discord.Client();
+bot.commands = new Discord.Collection();
+const fs = require('fs')
+const chalk = require("chalk");
 
-client.once('ready', () => {
-    console.log('Le bot est prêt à être utilisé !');
-    client.user.setActivity("Shapez.io", {type: 'PLAYING'});
-})
+const config = require('./config.json');
+bot.commands = new Discord.Collection()
 
-//patron
-client.on('message', (message) => {
-    if (message.content === `${prefix}patron`){
-        const monembed = new Discord.MessageEmbed()
-         .setTitle("Les patrons")
-         .setColor("#527a9e")
-         .addField('Description', "Le système de <#758700843398070282> se débloque a partir du niveaux 13, qui permet de couper, copier et coller une sélection aux prix d'une forme spécial, le <#758700843398070282> (en anglais,'blueprints').", false)
-         .addField('la forme', "Pour faire un patron, il faut un [rond bleu avec le l'angle supérieur droit étant un carré](https://viewer.shapez.io/?CbCbCbRb) superposé a un [rond blanc](https://viewer.shapez.io/?CwCwCwCw)(image si dessous)\nps : pour faire du blanc rendez-vous en <#756623417133760522>", false)
-         .setThumbnail('https://cdn.discordapp.com/attachments/758707064251482162/758707092046872616/patron.png')
-         .setImage('https://cdn.discordapp.com/attachments/758707064251482162/758707300470095903/calque_patron.png')
-         .setFooter('Infos tirées du fandom', 'https://cdn.discordapp.com/attachments/758707064251482162/759150748276621338/1_TtT_gbfvQ5LitUE9wfpkog.png')
-    message.channel.send(monembed);
-    console.log('commande patron executé')
-    }       
-})
-//generateur
-client.on('message', (message) => {
-    if (message.content === `${prefix}generateur`){
-        const monembed = new Discord.MessageEmbed()
-         .setTitle("générateur de forme")
-         .setColor("#527a9e")
-         .setDescription("Le <#756635002401194114> vous permet de générer n'importe quel forme ! De la plus farfelue au logo du jeu, tout est possible !\n[le générateur (clique ici!)](https://viewer.shapez.io/)")
-    message.channel.send(monembed);
-    console.log('commande generateur executé');
-    }       
-})
-//poubelle
-client.on('message', (message) => {
-    if (message.content === `${prefix}poubelle`){
-        const poubelle = new Discord.MessageEmbed()
-         .setTitle("La poubelle")
-         .setColor("#527a9e")
-         .setDescription("La <#756273846092300370> permet de détruire des formes inutiles. Elle est souvent utililisée après avoir mis des formes dans un <#756273811598344344>, puis détruire la partie dont vous n’avez pas besoin.")
-         .addField('Détails', "Item/s : infini\nTaille : 1x1\nRaccourci : 0\n Entrée : 4\nSortie : 0", false)
-         .setThumbnail('https://cdn.discordapp.com/attachments/758707064251482162/764153258507108372/trash.png')
-         .setImage("https://cdn.discordapp.com/attachments/758707064251482162/764153209202671616/trash.png")
-         .setFooter('Infos tirées du fandom', 'https://cdn.discordapp.com/attachments/758707064251482162/759150748276621338/1_TtT_gbfvQ5LitUE9wfpkog.png')
-    message.channel.send(poubelle);
-    console.log('commande poubelle executé');
-    }       
-})
-//stockage
-client.on('message', (message) => {
-    if (message.content === `${prefix}stockage`){
-        const stockage = new Discord.MessageEmbed()
-         .setTitle("Stockage")
-         .setColor("#527a9e")
-         .setDescription("Le <#764174142450696193> peut stocker une forme jusqu’à 5 000 items.Une propriété utile du stockage est qu’il peut être utilisé comme une porte de débordement. Si l’unité de stockage est vide, elle transmet toutes les entrées à la sortie gauche. Toutefois, s’il contient des éléments, ou si la sortie gauche est bloquée, il commencera à sortir vers la droite.")
-         .addField('Détails', "Item/s\nTaille : 2x2\nRaccourci : y\nEntrée : 2\nSortie : 2")
-         .setThumbnail('https://cdn.discordapp.com/attachments/758707064251482162/764176389993267210/storage.png')
-         .setImage('https://cdn.discordapp.com/attachments/758707064251482162/764163179634229278/trash-storage.png')
-         .setFooter('Infos tirées du fandom', 'https://cdn.discordapp.com/attachments/758707064251482162/759150748276621338/1_TtT_gbfvQ5LitUE9wfpkog.png')
-    message.channel.send(stockage);
-    console.log('commande stockage executé')
-    }       
-})
+fs.readdir('./commandes/', (err, files) => {
+    if(err) console.log(err);
+   log(chalk.red(`Chargement de ${files.length} commandes en cours.`))
+    let jsfile = files.filter(f => f.split(".").pop() === "js");
+    if(jsfile.length <= 0){
+    console.log('commandes not found.');
+    return;}
+    jsfile.forEach((f, o) => {
+        let props = require(`./commandes/${f}`);
+        bot.commands.set(props.help.name, props);})})
 
-client.login(token);
+
+fs.readdir("./event/", (err, files) => {
+    if (err) console.error(err);
+    let jsfiles = files.filter(f => f.split(".").pop() === "js");
+    if (jsfiles.length <= 0) return console.log("Aucun event trouvé");
+    log(chalk.green(`Chargement de ${jsfiles.length} Event en cours. `));
+    jsfiles.forEach((f, i) => {
+        require(`./event/${f}`);
+    });
+  });
+
+
+bot.on('ready', () => {
+    console.log("Servers:")
+    bot.guilds.cache.forEach((guild) => {
+        console.log(" - " + guild.name + " - " + guild.id)})})
+
+bot.on('ready', function(){
+                    bot.user.setActivity("Shapez.io", {type: "PLAYING"})
+                    log(chalk.bgRed('Chargement du bot en cours... '));})
+                    bot.on('guildCreate' , async guild => {
+                    bot.user.setActivity("Shapez.io", {type: "PLAYING"})})
+                    bot.on('guildDelete', async guild => {
+                    bot.user.setActivity("Shapez.io", {type: "PLAYING"})})
+
+bot.login(config.token)
+  bot.on('message', async message => {
+    bot.emit('checkMessage', message);
+    let prefix = config.prefix;
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0]
+    let Args = messageArray.slice(1);
+    var args = message.content.substring(prefix.length).split(" ");
+    if(message.content.startsWith(prefix)){
+    let commandeFile = bot.commands.get(cmd.slice(prefix.length));
+    if(commandeFile) commandeFile.run(bot, message, Args, args)}
+    ;})
+  module.exports = {
+    bot: bot
+}
