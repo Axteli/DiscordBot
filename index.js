@@ -39,12 +39,12 @@ bot.on('ready', () => {
         console.log(" - " + guild.name + " - " + guild.id)})})
 
 bot.on('ready', function(){
-                    bot.user.setActivity("Comment hacker humour et musique en tout genre", {type: "WATCHING"})
+                    bot.user.setActivity("racketter Kaito", {type: "PLAYING"})
                     log(chalk.bgRed('Chargement du bot en cours... '));})
                     bot.on('guildCreate' , async guild => {
-                    bot.user.setActivity("Comment hacker humour et musique en tout genre", {type: "WATCHING"})})
+                    bot.user.setActivity("racketter Kaito", {type: "PLAYING"})})
                     bot.on('guildDelete', async guild => {
-                    bot.user.setActivity("Comment hacker humour et musique en tout genre", {type: "WATCHING"})})
+                    bot.user.setActivity("racketter Kaito", {type: "PLAYING"})})
 
 bot.login(config.token)
   bot.on('message', async message => {

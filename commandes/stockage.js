@@ -10,7 +10,8 @@ module.exports.run = async(bot, message, args) => {
      .setImage('https://cdn.discordapp.com/attachments/758707064251482162/764163179634229278/trash-storage.png')
      .setFooter('Infos tirées du fandom', 'https://cdn.discordapp.com/attachments/758707064251482162/759150748276621338/1_TtT_gbfvQ5LitUE9wfpkog.png')
 message.channel.send(stockage);
-console.log('commande stockage executé')
+message.delete();
+console.log(`commande : stockage | par : ${message.author} | dans : ${message.channel} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
 
 }
 

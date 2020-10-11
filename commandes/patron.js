@@ -10,7 +10,8 @@ module.exports.run = async(bot, message, args) => {
      .setImage('https://cdn.discordapp.com/attachments/758707064251482162/758707300470095903/calque_patron.png')
      .setFooter('Infos tirées du fandom', 'https://cdn.discordapp.com/attachments/758707064251482162/759150748276621338/1_TtT_gbfvQ5LitUE9wfpkog.png')
 message.channel.send(patron);
-console.log('commande patron executé')
+message.delete();
+console.log(`commande : patron | par : ${message.author} | dans : ${message.channel} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
   
 }
 

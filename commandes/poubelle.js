@@ -10,7 +10,8 @@ module.exports.run = async(bot, message, args) => {
      .setImage("https://cdn.discordapp.com/attachments/758707064251482162/764153209202671616/trash.png")
      .setFooter('Infos tirées du fandom', 'https://cdn.discordapp.com/attachments/758707064251482162/759150748276621338/1_TtT_gbfvQ5LitUE9wfpkog.png')
 message.channel.send(poubelle);
-console.log('commande poubelle executé')
+message.delete();
+console.log(`commande : poubelle | par : ${message.author} | dans : ${message.channel} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
      
 }
 
