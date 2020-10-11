@@ -30,7 +30,7 @@ module.exports.run = async(bot, message, args) => {
     .setDescription(`Membre banni : ${member}\nPar : ${message.author}\nRaison : ${reason}`)
 
     message.channel.send(banembed);
-
+    console.log(`commande : ban | par : ${message.author} | dans : ${message.channel} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})|membre banni : ${member}| raison : ${reason}`)
 
 }
 

@@ -9,7 +9,7 @@ module.exports.run = async(bot, message, args) => {
     message.channel.send(
       `${user} a bien été banni !` 
     );
-    console.log(`commande : fakeban | par : ${message.author} | dans : ${message.channel} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
+    console.log(`commande : fakeban | par : ${message.author} | dans : ${message.channel} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| membre visé : ${user}`)
 }
 
 module.exports.help = {
