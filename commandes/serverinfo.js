@@ -8,6 +8,8 @@ module.exports.run = async(bot, message, args) => {
     .addField(`Nom du serveur`, `${message.guild}`, true)
     .addField(`owner`, `${message.guild.owner}`, true)
     .addField(`Region`, `${message.guild.region}`, true)
+    .addField(`Membres`, `${message.guild.memberCount}`, true)
+    .addField(`AFK timeout`, `${message.guild.afkTimeout}`, true)
     .setThumbnail(icon)
     message.channel.send(serverinfo);
     message.delete();
