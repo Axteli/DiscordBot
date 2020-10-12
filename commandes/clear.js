@@ -22,7 +22,7 @@ if (!message.member.permissions.has("MANAGE_MESSAGES")) // sets the permission
 
         const embed = new Discord.MessageEmbed()
             .setTitle(`${message.author.username}`)
-            .setDescription(`${deleteAmount} messages ont été supprimés !`)
+            .setDescription(`<a:tickgreen:764793938317803551> ${deleteAmount} messages ont été supprimés !`)
             .setFooter(message.author.username, message.author.displayAvatarURL())
             .setColor("#527a9e")
         await message.channel.send(embed)

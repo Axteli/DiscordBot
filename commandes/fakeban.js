@@ -7,7 +7,7 @@ module.exports.run = async(bot, message, args) => {
         return message.channel.send(`Tu ne m'as pas dit qui je dois bannir !`)
     }
     message.channel.send(
-      `${user} a bien été banni !` 
+      `${user} a bien été banni !<a:bancat:764793999130886194>` 
     );
     console.log(`commande : fakeban | par : ${message.author} | dans : ${message.channel} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| membre visé : ${user}`)
 }

@@ -25,7 +25,7 @@ module.exports.run = async(bot, message, args) => {
     })
 
     const banembed = new Discord.MessageEmbed()
-    .setTitle('Membre banni')
+    .setTitle('Membre banni <a:bancat:764793999130886194> ')
     .setThumbnail(member.user.displayAvatarURL())
     .setDescription(`Membre banni : ${member}\nPar : ${message.author}\nRaison : ${reason}`)
 
