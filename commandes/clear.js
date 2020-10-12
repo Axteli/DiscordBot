@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 module.exports.run = async(bot, message, args) => {
 
+message.delete();
 if (!message.member.permissions.has("MANAGE_MESSAGES")) // sets the permission
             return message.channel.send(
                 `${message.author.username}, tu n'as pas la permission de faire ça` // returns this message to user with no perms
