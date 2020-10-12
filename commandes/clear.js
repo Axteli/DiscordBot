@@ -20,12 +20,12 @@ if (!message.member.permissions.has("MANAGE_MESSAGES")) // sets the permission
 
         message.channel.bulkDelete(deleteAmount, true);
 
-        const embed = new Discord.MessageEmbed()
+        const clear = new Discord.MessageEmbed()
             .setTitle(`${message.author.username}`)
             .setDescription(`<a:tickgreen:764793938317803551> ${deleteAmount} messages ont été supprimés !`)
             .setFooter(message.author.username, message.author.displayAvatarURL())
             .setColor("#527a9e")
-        await message.channel.send(embed)
+        await message.channel.send(clear)
         console.log(`commande : clear | par : ${message.author} | dans : ${message.channel} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
     }
 
