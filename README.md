@@ -1,4 +1,4 @@
-![logo](https://cdn.discordapp.com/attachments/758707064251482162/765492998586630174/git200.png)
+![logo](https://repository-images.githubusercontent.com/302569921/d277ff00-0a46-11eb-957e-a941641c2d40)
 # WikiBot
 Bot pour le serveur discord wiki shapez.io
 
