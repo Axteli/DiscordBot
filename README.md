@@ -27,7 +27,7 @@ pour utiliser le code, vous devz au préalable avoir installer [node.js](https:/
 Ce logiciel vas vous permettre de lancer le code. Vous devez aussi installer [visual studio code](https://code.visualstudio.com/) qui lui vas vous permettre d'éditer le code.
 Une fois ces 2 logiciels installés, vous aller pouvoir ouvrr le fichier contenant le code avec visal studio code (file, open folder)
 Vous retrouver sur la gauche de l'écran la liste des fichier que contient le code. Vous avez simplement besoin d'ouvrir le fichier config.json
-Désormais rempalcer "your token" par votre token (pour trouver son token,rendez-vous ici : [Trouver son token](#Trouver-son-token)
+Désormais rempalcer "your token" par votre token (pour trouver son token,rendez-vous ici : [Trouver son token](#Trouver-son-token))
 
 ## lancer-le-bot
 Pour lancer le bot, vous devez écrire cette commande dans le terminal `node index.js` (pour avoir accès au terminal dans visual faite terminal -> nouveau terminal
@@ -35,10 +35,10 @@ Pour lancer le bot, vous devez écrire cette commande dans le terminal `node ind
 Si vous avez bien installez [node.js](https://nodejs.org/fr/)
 
 ## Problèmes/Paramètres
-Voici quelque aide qui pourrait résoudre vos problème/ vous aider a configurer le bot
--[trouver son token](#Trouver-son-token)
--[Changer de préfixe](#Changer-de-préfixe)
--[Bot publique](#Bot-publique)
+Voici quelque aide qui pourrait résoudre vos problème/ vous aider à configurer le bot
+- [trouver son token](#Trouver-son-token)
+- [Changer de préfixe](#Changer-de-préfixe)
+- [Bot publique](#Bot-publique)
 
 ### Trouver-son-token
 retourner sur [le portail développeur de discord](https://discord.com/developers/) et sélectionner votre application puis -> bot
