@@ -9,7 +9,7 @@ module.exports.run = async(bot, message, args) => {
   .addField(`Position`, `${message.channel.rawPosition}`, true)
   .setColor("#527a9e")
   message.channel.send(channelinfo)
-
+  console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
 }
 
 module.exports.help = {

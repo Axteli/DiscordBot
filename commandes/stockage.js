@@ -11,7 +11,7 @@ module.exports.run = async(bot, message, args) => {
      .setFooter('Infos tirées du fandom', 'https://cdn.discordapp.com/attachments/758707064251482162/759150748276621338/1_TtT_gbfvQ5LitUE9wfpkog.png')
 message.channel.send(stockage);
 message.delete();
-console.log(`commande : stockage | par : ${message.author} | dans : ${message.channel} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
+console.log(`commande : stockage | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
 
 }
 

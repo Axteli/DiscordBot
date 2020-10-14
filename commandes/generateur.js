@@ -7,7 +7,7 @@ module.exports.run = async(bot, message, args) => {
      .setDescription("Le <#756635002401194114> vous permet de générer n'importe quel forme ! De la plus farfelue au logo du jeu, tout est possible !\n[le générateur (clique ici!)](https://viewer.shapez.io/)")
     message.channel.send(generateur);
     message.delete();
-    console.log(`commande : generateur | par : ${message.author} | dans : ${message.channel} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
+    console.log(`commande : generateur | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
 
 }
 

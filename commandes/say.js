@@ -8,7 +8,7 @@ module.exports.run = async(bot, message, args) => {
        message.channel.send(text);
       message.delete();
       message.channel.stopTyping()
-      console.log(`commande : say | par : ${message.author} | dans : ${message.channel} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
+      console.log(`commande : say | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
      }
     };
     

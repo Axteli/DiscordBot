@@ -19,7 +19,7 @@ module.exports.run = async(bot, message, args) => {
          .setDescription(`Voici l'avatar de ${user.tag}`)
          .setColor("#527a9e")
          .setFooter(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png', dynamic: false, size: 1024 }))
-         console.log(`commande : avatar | par : ${message.author} | dans : ${message.channel} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
+         console.log(`commande : avatar | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
         return message.channel.send(avatar1)
         
     }

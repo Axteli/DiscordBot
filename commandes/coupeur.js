@@ -20,7 +20,7 @@ module.exports.run = async(bot, message, args) => {
      message.channel.send(coupeur1);
      message.channel.send(coupeur2);
      message.delete();
-     console.log(`commande : coupeur | par : ${message.author} | dans : ${message.channel} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
+     console.log(`commande : coupeur | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
 
 }
 

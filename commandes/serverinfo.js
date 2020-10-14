@@ -13,7 +13,7 @@ module.exports.run = async(bot, message, args) => {
     .setThumbnail(icon)
     message.channel.send(serverinfo);
     message.delete();
-    console.log(`commande : serverinfo | par : ${message.author} | dans : ${message.channel} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
+    console.log(`commande : serverinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
 
 }
 

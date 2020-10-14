@@ -26,7 +26,7 @@ if (!message.member.permissions.has("MANAGE_MESSAGES")) // sets the permission
             .setFooter(message.author.username, message.author.displayAvatarURL())
             .setColor("#527a9e")
         await message.channel.send(clear)
-        console.log(`commande : clear | par : ${message.author} | dans : ${message.channel} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
+        console.log(`commande : clear | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
     }
 
 
