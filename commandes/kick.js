@@ -13,7 +13,7 @@ const member = message.mentions.members.first() || message.guild.members.cache.g
 try {
     await member.kick();
     await message.channel.send(`${member} a été kické!`)
-    await console.log(`commande : kick| par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
+    await console.log(`commande : kick| par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| membre visé : ${member}`)
 } catch (e) {
     return message.channel.send(`Cet utilisateur n'est pas sur le serveur!`)
 }
