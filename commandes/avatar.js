@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 module.exports.run = async(bot, message, args) => {
 
+    message.delete()
     if(!message.mentions.users.first()){
         const avatar = new Discord.MessageEmbed()
          .setTitle("Ton avatar")
@@ -17,6 +18,7 @@ module.exports.run = async(bot, message, args) => {
          .setImage(user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
          .setDescription(`Voici l'avatar de ${user.tag}`)
          .setColor("#527a9e")
+         .setFooter(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png', dynamic: false, size: 1024 }))
          console.log(`commande : avatar | par : ${message.author} | dans : ${message.channel} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
         return message.channel.send(avatar1)
         
