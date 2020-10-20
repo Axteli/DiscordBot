@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 module.exports.run = async(bot, message, args) => {
 
-message.delete();
+await message.delete();
 if (!message.member.permissions.has("MANAGE_MESSAGES")) // sets the permission
             return message.channel.send(
                 `${message.author.username}, tu n'as pas la permission de faire ça` // returns this message to user with no perms
@@ -25,7 +25,8 @@ if (!message.member.permissions.has("MANAGE_MESSAGES")) // sets the permission
             .setDescription(`<a:tickgreen:764793938317803551> ${deleteAmount} messages ont été supprimés !`)
             .setFooter(message.author.username, message.author.displayAvatarURL())
             .setColor("#527a9e")
-        await message.channel.send(clear)
+            const msg = await message.channel.send(clear)
+            await setTimeout(() => { msg.delete();}, 3000)
         console.log(`commande : clear | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| nb de msg supprimés : ${deleteAmount}`)
     }
 
