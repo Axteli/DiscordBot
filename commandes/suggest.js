@@ -18,7 +18,7 @@ module.exports.run = async(bot, message, args) => {
         SuggestionChannel.send(embed).then(msg => {
             msg.react('764793938317803551');
             msg.react('764793956813766687');
-                message.channel.send("<a:tickgreen:764793938317803551> ta suggestion a bien été envoyer !");
+                message.channel.send("<a:tickgreen:764793938317803551> ta suggestion a bien été envoyer dans ${SuggestionChannel} !");
                 console.log(`commande : suggest | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| suggestion : ${suggestion}`)
         });
 
