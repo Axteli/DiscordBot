@@ -37,22 +37,14 @@ bot.on('ready', () => {
     console.log("Servers:")
     bot.guilds.cache.forEach((guild) => {
         console.log(" - " + guild.name + " - " + guild.id)})})
-        const embed = new Discord.MessageEmbed()
-        .setColor('GREEN')
-        .setTitle('<:online:764845529380290581>')
-        .setDescription('Le bot a bien été allumé !')
-        const webhookClient = new Discord.WebhookClient(config.webhookID, config.webhookToken);
-          webhookClient.send('', {
-            embeds: [embed],
-        });
 
 bot.on('ready', function(){
-                    bot.user.setActivity("Shapez.io | $help", {type: "PLAYING"})         
+                    bot.user.setActivity("la Version Alpha", {type: "WATCHING"})         
                     log(chalk.bgRed('Chargement du bot en cours... '));})
                     bot.on('guildCreate' , async guild => {
-                    bot.user.setActivity("Shapez.io | $help", {type: "PLAYING"})})
+                    bot.user.setActivity("la Version Alpha", {type: "WATCHING"})})
                     bot.on('guildDelete', async guild => {
-                    bot.user.setActivity("Shapez.io | $help", {type: "PLAYING"})})
+                    bot.user.setActivity("la Version Alpha", {type: "WATCHING"})})
 
 bot.login(config.token)
   bot.on('message', async message => {
