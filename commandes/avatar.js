@@ -9,7 +9,7 @@ module.exports.run = async(bot, message, args) => {
          .setImage(message.author.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
          .setDescription("Voici ton avatar")
          .setColor("#527a9e")
-        return message.channel.send(avatar)
+        return message.channel.send(avatar), console.log(`commande : avatar | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
     }else{
         const user = message.mentions.users.first()
         const avatar1 = new Discord.MessageEmbed()
@@ -19,7 +19,7 @@ module.exports.run = async(bot, message, args) => {
          .setDescription(`Voici l'avatar de ${user.tag}`)
          .setColor("#527a9e")
          .setFooter(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png', dynamic: false, size: 1024 }))
-         console.log(`commande : avatar | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
+         console.log(`commande : avatar | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}| membre visé : ${user})`)
         return message.channel.send(avatar1)
         
     }
