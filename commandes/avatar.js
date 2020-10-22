@@ -2,7 +2,8 @@ const Discord = require('discord.js')
 module.exports.run = async(bot, message, args) => {
 
     message.delete()
-    if(!message.mentions.users.first()){
+    //si il n'y a pas de mention, executé cet embed (qui vas donne l'avatar de l'auteur du message)
+    if (!args[0]){
         const avatar = new Discord.MessageEmbed()
          .setTitle("Ton avatar")
          .setURL(message.author.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
@@ -11,20 +12,23 @@ module.exports.run = async(bot, message, args) => {
          .setColor("#527a9e")
         return message.channel.send(avatar), console.log(`commande : avatar | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
     }else{
+        //ou alors envoyé l'avatar de la personne qui a été mentionné
         const user = message.mentions.users.first()
-        const avatar1 = new Discord.MessageEmbed()
-         .setTitle(`Avatar de ${user.tag}`)
-         .setURL(user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
-         .setImage(user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
-         .setDescription(`Voici l'avatar de ${user.tag}`)
-         .setColor("#527a9e")
-         .setFooter(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png', dynamic: false, size: 1024 }))
+        if (user === !'') {
+            const avatar1 = new Discord.MessageEmbed()
+             .setTitle(`Avatar de ${user.tag}`)
+             .setURL(user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
+             .setImage(user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
+             .setDescription(`Voici l'avatar de ${user.tag}`)
+             .setColor("#527a9e")
+             .setFooter(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png', dynamic: false, size: 1024 }))
          console.log(`commande : avatar | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}| membre visé : ${user})`)
         return message.channel.send(avatar1)
-        
+        }
     }
-}
+    
 
+}
 module.exports.help = {
 name: "avatar"
 }
