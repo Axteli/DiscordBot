@@ -30,16 +30,14 @@ const getPresenceStatus = status => {
         .setColor("#527a9e")
         .setAuthor(member.user.username, member.user.displayAvatarURL())
         .setThumbnail(member.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
-        .addField("Nom d'utilisateur complet", `${member.user.tag}`, true)
-        .addField("Nickname", `${member.nickname !== null ? `${member.nickname}` : "Aucun"}`, true)
+        .addField("tag", `${member.user.tag}`, true)
+        .addField("Surnom", `${member.nickname !== null ? `${member.nickname}` : "Aucun"}`, true)
         .addField("ID", `${member.user.id}`, true)
         .addField('Bot', member.user.bot ? '🤖 Oui' : '👤 Non', true)
         .addField("Status", `${status[member.user.presence.status]}`, true)
         .addField("Platforme", getPresenceStatus(member.user.presence.clientStatus), true)
         .addField("Compte crée le", moment(member.user.createdAt).format('DD/MM/YYYY HH:mm:ss'), true)
         .addField("A rejoint le serveur", moment(member.joinedAt).format('DD/MM/YYYY HH:mm:ss'), true)
-        .setFooter(`Information utilisateur `)
-        .setTimestamp()
         message.channel.send(userinfo);
         console.log(`commande : userinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
 
