@@ -1,38 +1,87 @@
 const Discord = require('discord.js')
 module.exports.run = async(bot, message, args) => {
 
-    if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send('<a:tickred:764793956813766687> Erreur | Tu ne peux pas bannir!'), console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : ${message.author.tag} n'as pas la permission de bannir`)
-    if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send('<a:tickred:764793956813766687> Erreur | Je n\'est pas la permission de bannir !'), console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : le bot n'as pas la permission de bannir`)
-
-    const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-
-    if(!args[0]) return message.channel.send('<a:tickred:764793956813766687> Erreur | Tu n\'as pas indiquer qui je doit bannir !'),console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : n'as pas indiqué qui bannir`)
-
-    if(!member) return message.channel.send('<a:tickred:764793956813766687> Erreur | Je ne trouve pas cet utilisateur :/'),console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : l'utilisateur était introuvable`)
-    
-    if(member.id === '761914312422981632') return message.channel.send('Pourquoi veut tu me ban? tu ne m\'aime pas? :cry:'),console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : a essayé de se ban le bot`)
-    if(member.id === message.author.id) return message.channel.send('Bruh, tu ne peux pas te ban toi-meme!'),console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : a essayé de se ban sois-meme`)
-    
-    if(!member.bannable) return message.channel.send('<a:tickred:764793956813766687> Erreur | Je ne peux pas bannir cet personne. soit car c\'est un modo/admin, soit car il a un role au dessus du miens'),console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : la personne ne peut pas etre banni`)
-
-    let reason = args.slice(1).join(" ");
-
-
-    member.ban({
-        reason: `${reason}`,
-        })
-    .catch(err => {
-        if(err) return message.channel.send('keskicpace')
-    })
     message.delete()
-    const banembed = new Discord.MessageEmbed()
-    .setColor("#527a9e")
-    .setTitle('Membre banni <a:bancat:764793999130886194> ')
-    .setThumbnail(member.user.displayAvatarURL())
-    .setDescription(`Membre banni : ${member}\nPar : ${message.author}\nRaison : ${reason}`)
 
-    message.channel.send(banembed);
-    console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| membre banni : ${member}| raison : ${reason}`)
+    //vérifie les permissions
+        if (!message.member.hasPermission('BAN_MEMBERS')) {
+            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, tu n'as pas la permission de ban!`),
+             console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : ${message.author.name} n'as pas la permission de kick`)
+        }
+
+        if (!message.guild.me.hasPermission("BAN_MEMBERS"))
+            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, je n\'est pas la permission de ban!`), 
+             console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : le bot n'as pas la permission de ban`)
+
+
+
+    //vérifie que quelqu'un a été mentionné
+        if (!args[0]) {
+            return message.channel.send(`${message.author.username}, précise qui je dois ban!`)
+        }
+
+    //définir member
+        const member = message.mentions.members.first() || message.id.members.first();
+
+
+    //si member est = a rien return
+        if(!member) 
+            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, je ne trouve pas cet utilisateur :/`),
+             console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : l'utilisateur est introuvable`)
+
+
+    //vérifie qui est la personne a ban
+        if(member.id === '761914312422981632') 
+            return message.channel.send(`${message.author}, pourquoi veut tu me ban? tu ne m\'aime pas? :cry:`),
+             console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : a essayé de ban le bot`)
+
+        if(member.id === message.author) 
+            return message.channel.send(`${message.author}, tu ne peux pas te ban toi-meme!`),
+             console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : ${message.author.username} a essayé de se ban sois-meme`)
+
+
+    //verifie si la personne est banable
+        if(!member.banable) 
+            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author}, je ne peux pas bannir cet personne probablement car il a un role au dessus du miens`),
+             console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : la personne ne peut pas etre kick par le bot`)
+
+
+
+    //définir la raison
+        let reason = args.slice(1).join(" ");
+         
+    // si raison = a rien alors reason = non fourni
+        if (reason === "") reason = "Non-fourni"
+
+
+    //envoie le mp au membre banni
+        const banmp = new Discord.MessageEmbed()
+        
+         .setColor("#527a9e")
+         .setTitle(`Tu a été ban du serveur : ${message.guild}`)
+         .setDescription(`Par : ${message.author}\nRaison : ${reason}`)
+         .setThumbnail(message.guild.iconURL())
+         .setTimestamp()
+
+        member.send(banmp);
+        
+    //ban le membre après 500ms
+        await setTimeout(() => { member.ban({reason: `${reason} | Par : ${message.author.tag} (${message.author.id})`})
+         .catch(err => {if(err) return message.channel.send('keskicpace')})}, 500);
+
+
+        const banembed = new Discord.MessageEmbed()
+
+         .setColor("#527a9e")
+         .setTitle('Membre banni <a:bancat:764793999130886194>')
+         .setThumbnail(member.user.displayAvatarURL())
+         .setDescription(`Membre banni : ${member}\nPar : ${message.author}\nRaison : ${reason}`)
+     
+        message.channel.send(banembed);
+
+    console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| membre visé : ${member}`)
+
+
 
 }
 
