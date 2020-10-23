@@ -1,5 +1,4 @@
 const Discord = require('discord.js')
-const vanish = require('../config.json')
 module.exports.run = async(bot, message, args) => {
 
     message.delete()
