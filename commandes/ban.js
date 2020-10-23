@@ -42,9 +42,13 @@ module.exports.run = async(bot, message, args) => {
 
     //verifie si la personne est banable
         if(!member.banable) 
-            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author}, je ne peux pas bannir cet personne probablement car il a un role au dessus du miens`),
+            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author}, je ne peux pas bannir cette personne probablement car elle a un rôle au dessus du miens`),
              console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : la personne ne peut pas etre kick par le bot`)
 
+    //vérifie si la personne à ban n'est pas plus haut gradé
+        if (message.member.roles.highest.comparePositionTo(member.roles.highest) < 1 && message.author.id !== message.guild.ownerID) 
+            return message.channel.send(`${message.author.username}, tu ne peux pas ban quelqu'un plus haut gradé que toi!`)
+             console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : a essayé de ban un membre plus haut gradé`)
 
 
     //définir la raison

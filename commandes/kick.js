@@ -6,7 +6,7 @@ module.exports.run = async(bot, message, args) => {
     //vérifie les permissions
         if (!message.member.hasPermission('KICK_MEMBERS')) {
             return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, tu n'as pas la permission de kick!`),
-             console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : ${message.author.name} n'as pas la permission de kick`)
+             console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : ${message.author.username} n'as pas la permission de kick`)
         }
 
         if (!message.guild.me.hasPermission("KICK_MEMBERS"))
@@ -44,6 +44,11 @@ module.exports.run = async(bot, message, args) => {
         if(!member.kickable) 
             return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author}, je ne peux pas kicker cet personne probablement car il a un role au dessus du miens`),
              console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : la personne ne peut pas etre kick par le bot`)
+
+    //vérifie si la personne à kick n'est pas plus haut gradé
+        if (message.member.roles.highest.comparePositionTo(member.roles.highest) < 1 && message.author.id !== message.guild.ownerID) 
+            return message.channel.send(`${message.author.username}, tu ne peux pas kick quelqu'un plus haut gradé que toi!`)
+             console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : a essayé de kick un membre plus haut gradé`)
 
 
 
