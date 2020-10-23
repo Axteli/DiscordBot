@@ -42,7 +42,7 @@ module.exports.run = async(bot, message, args) => {
 
     //verifie si la personne est kickable
         if(!member.kickable) 
-            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author}, je ne peux pas bannir cet personne probablement car il a un role au dessus du miens`),
+            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author}, je ne peux pas kicker cet personne probablement car il a un role au dessus du miens`),
              console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : la personne ne peut pas etre kick par le bot`)
 
 
