@@ -17,7 +17,7 @@ module.exports.run = async(bot, message, args) => {
 
     //vérifie que quelqu'un a été mentionné
         if (!args[0]) {
-            return message.channel.send(`${message.author.username}, précise qui je dois ban!`)
+            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, tu n'as pas précisé qui je dois ban!`)
         }
 
     //définir member

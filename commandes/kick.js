@@ -17,7 +17,7 @@ module.exports.run = async(bot, message, args) => {
 
     //vérifie que quelqu'un a été mentionné
         if (!args[0]) {
-            return message.channel.send(`${message.author.username}, précise qui je dois kick!`)
+            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, tu n'as pas précisé qui je dois kick!`)
         }
 
     //définir member
@@ -32,22 +32,22 @@ module.exports.run = async(bot, message, args) => {
 
     //vérifie qui est la personne a kick
         if(member.id === '761914312422981632') 
-            return message.channel.send(`${message.author}, pourquoi veut tu me kick? tu ne m\'aime pas? :cry:`),
+            return message.channel.send(`${message.author.username}, pourquoi veut tu me kick? tu ne m\'aime pas? :cry:`),
              console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : a essayé de kick le bot`)
 
         if(member.id === message.author) 
-            return message.channel.send(`${message.author}, tu ne peux pas te kick toi-meme!`),
+            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, tu ne peux pas te kick toi-meme!`),
              console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : a essayé de se kick sois-meme`)
 
 
     //verifie si la personne est kickable
         if(!member.kickable) 
-            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author}, je ne peux pas kicker cet personne probablement car il a un role au dessus du miens`),
+            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, je ne peux pas kicker cet personne probablement car il a un role au dessus du miens`),
              console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : la personne ne peut pas etre kick par le bot`)
 
     //vérifie si la personne à kick n'est pas plus haut gradé
         if (message.member.roles.highest.comparePositionTo(member.roles.highest) < 1 && message.author.id !== message.guild.ownerID) 
-            return message.channel.send(`${message.author.username}, tu ne peux pas kick quelqu'un plus haut gradé que toi!`)
+            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, tu ne peux pas kick quelqu'un plus haut gradé que toi!`)
              console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : a essayé de kick un membre plus haut gradé`)
 
 
@@ -64,7 +64,7 @@ module.exports.run = async(bot, message, args) => {
         
          .setColor("#527a9e")
          .setTitle(`Tu a été kick du serveur : ${message.guild}`)
-         .setDescription(`Par : ${message.author}\nRaison : ${reason}`)
+         .setDescription(`Par : ${message.author.tag}\nRaison : ${reason}`)
          .setThumbnail(message.guild.iconURL())
          .setTimestamp()
 
@@ -80,7 +80,7 @@ module.exports.run = async(bot, message, args) => {
          .setColor("#527a9e")
          .setTitle('Membre kické')
          .setThumbnail(member.user.displayAvatarURL())
-         .setDescription(`Membre kické : ${member}\nPar : ${message.author}\nRaison : ${reason}`)
+         .setDescription(`Membre kické : ${member}\nPar : ${message.author.tag}\nRaison : ${reason}`)
      
         message.channel.send(kickembed);
 
