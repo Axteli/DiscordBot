@@ -7,7 +7,7 @@ module.exports.run = async(bot, message, args) => {
         var text = message.content.split(' ').slice(1).join(' ');
 
     //si aucun texte défini return
-        if(!text) return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.tag}, tu ne m\'as pas dit ce que je devais écrire!`);
+        if(!text) return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, tu ne m\'as pas dit ce que je devais écrire!`);
     
     //envoyer le text défini plus haut
         message.channel.send(text);
