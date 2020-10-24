@@ -17,8 +17,10 @@ module.exports.run = async(bot, message, args) => {
 
     //vérifie que quelqu'un a été mentionné
         if (!args[0]) {
-            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, tu n'as pas précisé qui je dois kick!`)
+            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, tu n'as pas précisé qui je dois kick!`),
+             console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : personne n'a été précisé`)
         }
+
 
     //définir member
         const member = message.mentions.members.first() || message.id.members.first();

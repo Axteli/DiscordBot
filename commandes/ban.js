@@ -17,7 +17,8 @@ module.exports.run = async(bot, message, args) => {
 
     //vérifie que quelqu'un a été mentionné
         if (!args[0]) {
-            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, tu n'as pas précisé qui je dois ban!`)
+            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, tu n'as pas précisé qui je dois ban!`),
+            console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : personne n'a été précisé`)
         }
 
     //définir member
