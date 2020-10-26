@@ -1,5 +1,7 @@
-  
 {
     "prefix": "$",
-    "token": "your token"
+    "token": "your token",
+
+    "owner1": "id of first owner",
+    "owner2": "id of second owner"
 }
