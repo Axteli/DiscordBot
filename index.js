@@ -7,6 +7,8 @@ bot.commands = new Discord.Collection();
 const fs = require('fs')
 const chalk = require("chalk");
 
+bot.config = require('./config.json')
+
 const config = require('./config.json');
 bot.commands = new Discord.Collection()
 
