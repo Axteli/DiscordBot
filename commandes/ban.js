@@ -22,7 +22,7 @@ module.exports.run = async(bot, message, args) => {
         }
 
     //définir member
-        const member = message.mentions.members.first() || message.id.members.first();
+        const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 
 
     //si member est = a rien return
