@@ -14,9 +14,10 @@ module.exports.run = async(bot, message, args) => {
             await setTimeout(() => { msg.edit(`<:offline:764845548103532615> Le bot vas s'éteindre dans 1 seconde `);}, 4000);
             await setTimeout(() => { msg.edit(`<:offline:764845548103532615> le bot s'éteint...`);}, 5000)
 
-//changer le statut et envoyer un message age dans la console
+//changer le statut et envoyer un message dans la console
         await setTimeout(() => { bot.user.setStatus('invisible'); }, 4990);
-        await setTimeout(() => { log(chalk.red(`LE BOT VAS S'ÉTEINDRE!`)); }, 2000);
+        await bot.user.setActivity(`s'éteindre...`, {type: `PLAYING`});
+        await log(chalk.bgRed(`LE BOT VAS S'ÉTEINDRE!`));
         
 //éteindre le bot
         await setTimeout(() => { process.exit(); }, 5001);
