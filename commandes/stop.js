@@ -16,7 +16,6 @@ module.exports.run = async(bot, message, args) => {
 
 //changer le statut et envoyer un message dans la console
         await setTimeout(() => { bot.user.setStatus('invisible'); }, 4990);
-        await bot.user.setActivity(`s'éteindre...`, {type: `PLAYING`});
         await log(chalk.bgRed(`LE BOT VAS S'ÉTEINDRE!`));
         
 //éteindre le bot
