@@ -5,8 +5,14 @@ module.exports.run = async(bot, message, args) => {
 
 //si personne n'a été précisé
     if (!args[0]) {
-        return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, tu n'as pas précisé de qui je dois afficher l'avatar!`),
-         console.log(`commande : avatar | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : personne n'a été précisé`)
+        const avatarembed = new Discord.MessageEmbed()
+         .setTitle(`Ton avatar`)
+         .setURL(message.author.displayAvatarURL({ format: 'png', dynamic: true, size: 4096 }))
+         .setImage(message.author.displayAvatarURL({ format: 'png', dynamic: true, size: 4096 }))
+         .setDescription(`${message.author.username}, voici ton avatar!`)
+         .setColor("#527a9e")
+        message.channel.send(avatarembed)
+        return console.log(`commande : avatar | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
     }
     
 //ou alors envoyé l'avatar de la personne qui a été mentionné
