@@ -32,7 +32,7 @@ module.exports.run = async(bot, message, args) => {
 
 
     //vérifie qui est la personne a ban
-        if(member.id === '761914312422981632') 
+        if(member.id === `${bot.user.id}`) 
             return message.channel.send(`${message.author.username}, pourquoi veut tu me ban? tu ne m\'aime pas? :cry:`),
              console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : a essayé de ban le bot`)
 
