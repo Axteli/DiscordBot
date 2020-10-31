@@ -5,11 +5,11 @@ module.exports.run = async(bot, message, args) => {
 
 //vérifie les permission
     if(!message.member.hasPermission("BAN_MEMBERS")) 
-        return message.channel.send('<a:tickred:764793956813766687> Erreur | Tu ne peux pas dé-bannir!'), 
+        return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, tu ne peux pas dé-bannir!`), 
          console.log(`commande : unban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : ${message.author.username} n'as pas la permission de dé-bannir`)
     
     if(!message.guild.me.hasPermission("BAN_MEMBERS")) 
-        return message.channel.send('<a:tickred:764793956813766687> Erreur | Je n\'est pas la permission de dé-bannir !'),
+        return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, je n\'ai pas la permission de dé-bannir !`),
          console.log(`commande : unban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : le bot n'as pas la permission de dé-bannir`)
 
 //définir le membre a unban
