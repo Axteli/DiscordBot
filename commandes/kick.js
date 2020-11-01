@@ -73,7 +73,7 @@ module.exports.run = async(bot, message, args) => {
         member.send(kickmp);
         
     //kick le membre après 500ms
-        await setTimeout(() => { member.kick({reason: `${reason} | Par : ${message.author.tag} (${message.author.id})`})
+        await setTimeout(() => { member.kick(`${reason} | Par : ${message.author.tag} (${message.author.id})`)
          .catch(err => {if(err) return message.channel.send('keskicpace')})}, 500);
 
 

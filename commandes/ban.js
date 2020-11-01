@@ -71,7 +71,7 @@ module.exports.run = async(bot, message, args) => {
         member.send(banmp);
         
     //ban le membre après 500ms
-        await setTimeout(() => { member.ban({reason: `${reason} | Par : ${message.author.tag} (${message.author.id})`})
+        await setTimeout(() => { member.ban(`${reason} | Par : ${message.author.tag} (${message.author.id})`)
          .catch(err => {if(err) return message.channel.send('keskicpace')})}, 500);
 
 
