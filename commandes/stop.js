@@ -12,14 +12,14 @@ module.exports.run = async(bot, message, args) => {
             await setTimeout(() => { msg.edit(`<:offline:764845548103532615> Le bot vas s'éteindre dans 3 secondes `);}, 2000);
             await setTimeout(() => { msg.edit(`<:offline:764845548103532615> Le bot vas s'éteindre dans 2 secondes `);}, 3000);
             await setTimeout(() => { msg.edit(`<:offline:764845548103532615> Le bot vas s'éteindre dans 1 seconde `);}, 4000);
-            await setTimeout(() => { msg.edit(`<:offline:764845548103532615> le bot s'éteint...`);}, 5000)
+            await setTimeout(() => { msg.edit(`<:offline:764845548103532615> le bot s'éteint...`);}, 4090)
 
 //changer le statut et envoyer un message dans la console
-        await setTimeout(() => { bot.user.setStatus('invisible'); }, 4990);
-        await log(chalk.bgRed(`LE BOT VAS S'ÉTEINDRE!`));
+        await setTimeout(() => { bot.user.setStatus('invisible'); }, 4980);
+        await log(chalk.bgRed(`le bot vas s'éteindre!`));
         
 //éteindre le bot
-        await setTimeout(() => { process.exit(); }, 5001);
+        await setTimeout(() => { process.exit(); }, 5010);
 
     } else {
 //envoyer le message d'erreur si la personne n'est pas owner du bot
