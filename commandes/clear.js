@@ -36,7 +36,7 @@ module.exports.run = async(bot, message, args) => {
         });
 
 //envoyé le message de finalisation
-    const msg = await message.channel.send(`:tickgreen: | ${message.author.username}, \`${deleteAmount} messages\` ont été supprimés!`)
+    const msg = await message.channel.send(`<a:tickgreen:764793938317803551> | ${message.author.username}, \`${deleteAmount} messages\` ont été supprimés!`)
 
 //supprime l'embed au bout de 3sec
         await setTimeout(() => { msg.delete();}, 3000)
