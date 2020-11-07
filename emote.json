@@ -1,0 +1,14 @@
+{
+    "partner": "partner_emote_id",
+    "verified": "verified_emote_id",
+    "boost": "boost_emote_id",
+    "nani": "nani_emote_id",
+    "tick": "tick_emote_id",
+    "cross": "cross_emote_id",
+    "status_online": "status_online_emote_id",
+    "status_offline": "status_offline_emote_id",
+    "status_idle": "status_idle_emote_id",
+    "status_dnd": "status_dnd_emote_id",
+    "status_streaming": "status_streaming_emote_id"
+
+}
