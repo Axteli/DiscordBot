@@ -7,12 +7,12 @@ module.exports.run = async(bot, message, args) => {
 
     if(message.author.id === config.owner1 || message.author.id === config.owner2) {
 //éditer le message 
-        const msg = await message.channel.send(`<:offline:764845548103532615> Le bot vas s'éteindre dans 5 secondes `);
-            await setTimeout(() => { msg.edit(`<:offline:764845548103532615> Le bot vas s'éteindre dans 4 secondes `); }, 1000);
-            await setTimeout(() => { msg.edit(`<:offline:764845548103532615> Le bot vas s'éteindre dans 3 secondes `);}, 2000);
-            await setTimeout(() => { msg.edit(`<:offline:764845548103532615> Le bot vas s'éteindre dans 2 secondes `);}, 3000);
-            await setTimeout(() => { msg.edit(`<:offline:764845548103532615> Le bot vas s'éteindre dans 1 seconde `);}, 4000);
-            await setTimeout(() => { msg.edit(`<:offline:764845548103532615> le bot s'éteint...`);}, 5000)
+        const msg = await message.channel.send(`${emote.status_offline} Le bot vas s'éteindre dans 5 secondes `);
+            await setTimeout(() => { msg.edit(`${emote.status_offline} Le bot vas s'éteindre dans 4 secondes `); }, 1000);
+            await setTimeout(() => { msg.edit(`${emote.status_offline} Le bot vas s'éteindre dans 3 secondes `);}, 2000);
+            await setTimeout(() => { msg.edit(`${emote.status_offline} Le bot vas s'éteindre dans 2 secondes `);}, 3000);
+            await setTimeout(() => { msg.edit(`${emote.status_offline} Le bot vas s'éteindre dans 1 seconde `);}, 4000);
+            await setTimeout(() => { msg.edit(`${emote.status_offline} Le bot s'éteint...`);}, 5000)
 
 //changer le statut et envoyer un message dans la console
         await setTimeout(() => { bot.user.setStatus('invisible'); }, 4900);
