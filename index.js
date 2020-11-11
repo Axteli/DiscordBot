@@ -1,65 +1,125 @@
-const Discord = require('discord.js')
-const log = console.log
-
+const Discord = require("discord.js")
+const config = require("./config.json")
 const bot = new Discord.Client();
-
+const fs = require("fs");
+const chalk = require("chalk")
+const emote = require('./emote.json')
 bot.commands = new Discord.Collection();
-const fs = require('fs')
-const chalk = require("chalk");
+bot.aliases = new Discord.Collection();
+console.log(chalk.bgBlue(`Le bot vas démarrer dans 5 secondes...`))
+ 
+setTimeout(() => {
 
-bot.config = require('./config.json')
+fs.readdir("./commandes/", (err, files) => {
+ 
+  if(err) console.log(err);
+ 
+  let jsfile = files.filter(f => f.split(".").pop() === "js");
+  console.log(chalk.red(`Chargement des commandes...`))
 
-const config = require('./config.json');
-bot.commands = new Discord.Collection()
+  
 
-fs.readdir('./commandes/', (err, files) => {
-    if(err) console.log(err);
-   log(chalk.red(`Chargement de ${files.length} commandes en cours.`))
-    let jsfile = files.filter(f => f.split(".").pop() === "js");
-    if(jsfile.length <= 0){
-    console.log('commandes not found.');
-    return;}
-    jsfile.forEach((f, o) => {
-        let props = require(`./commandes/${f}`);
-        bot.commands.set(props.help.name, props);})})
-
-
-fs.readdir("./event/", (err, files) => {
-    if (err) console.error(err);
-    let jsfiles = files.filter(f => f.split(".").pop() === "js");
-    if (jsfiles.length <= 0) return console.log("Aucun event trouvé");
-    log(chalk.green(`Chargement de ${jsfiles.length} Event en cours. `));
-    jsfiles.forEach((f, i) => {
-        require(`./event/${f}`);
+  if(jsfile.length <= 0){
+    console.log(chalk.bgRed("Je ne trouve pas les commandes"));
+    return;
+  }
+ 
+jsfile.forEach((f, i) =>{
+  let props = require(`./commandes/${f}`);
+  console.log(`${f} chargée!`);
+  bot.commands.set(props.help.name, props);
+  let pull = require(`./commandes/${f}`)
     });
-  });
+    console.log(chalk.bgRed(`${jsfile.length} commandes chargées!`));
+});
 
 
-bot.on('ready', () => {
-    console.log("Servers:")
-    bot.guilds.cache.forEach((guild) => {
-        console.log(" - " + guild.name + " - " + guild.id)})})
 
-bot.on('ready', function(){
-                    bot.user.setActivity("la Version Alpha", {type: "WATCHING"})         
-                    log(chalk.bgRed('Chargement du bot en cours... '));})
-                    bot.on('guildCreate' , async guild => {
-                    bot.user.setActivity("la Version Alpha", {type: "WATCHING"})})
-                    bot.on('guildDelete', async guild => {
-                    bot.user.setActivity("la Version Alpha", {type: "WATCHING"})})
+fs.readdir("./event/", (error, f) => {
+    if (error) console.log(error);
+    let eventjsfile = f.filter(f => f.split(".").pop() === "js");
+    console.log(chalk.green(`Chargement des events...`))
+
+    if(eventjsfile.length <= 0){
+    console.log(chalk.bgGreen("Je ne trouve pas les events"));
+    return;
+};
+
+eventjsfile.forEach((f, i) =>{
+    let events = require(`./event/${f}`);
+    console.log(`${f} chargée!`);
+    });
+    
+    console.log(chalk.bgGreen(`${eventjsfile.length} events chargées!`));
+});
+ 
+
+
+
+bot.on("ready", () => {
+    console.log(`------------------------`)
+    console.log(bot.user.username + " est en ligne !")
+
+    var jeuxs = [
+        `En cours de développement`,
+        `Jeux & Discussions`,
+        `Aucune commande help pour l'instant`,
+        `Version Alpha`,
+        `Prefixe : ${config.prefix}`
+        ];
+            
+        
+    setInterval(function () {
+        
+        var jeux = jeuxs[Math.floor(Math.random() * jeuxs.length)];
+        
+        bot.user.setActivity(jeux, 
+        
+        {type: "STREAMING", 
+        url: `https://twitch.tv/${bot.user.username}`})
+        
+        }, 4000);
+        console.log(`Le status est optérationnel!`)
+
+    
+    console.log(chalk.blue(`----------INFO----------`))
+        console.log(`\nServeurs :`)
+        bot.guilds.cache.forEach((guild) => {
+        console.log(`   - ${guild.name} - ${guild.id} - admin : ${guild.me.hasPermission("ADMINISTRATOR") ? `oui` : `non`}`)})
+        
+        console.log(`\nBot:\n    ${bot.user.username} - ${bot.user.id}`)
+
+        console.log(`\nConfiguration:\n   Préfixe: ${config.prefix} - Administrateur1: ${config.owner1} - Administrateur2: ${config.owner2}`)
+
+        console.log(chalk.cyan(`\nLogs de commandes:\n`))
+
+        const channel = bot.channels.cache.get(`${config.logsChannel}`);
+        const embed = new Discord.MessageEmbed()
+        .setColor(`GREEN`)
+        .setDescription(`${emote.status_online} | Le bot est allumé!`)
+        .setTimestamp()
+        channel.send(embed);
+})
+    
+ 
+bot.on("message", async message => {
+ 
+  if(message.author.bot) return;
+  if(message.channel.type === 'dm') return;
+  let content = message.content.split(" ");
+  let command = content[0];
+  let args = content.slice(1);
+  let prefix = config.prefix;
+ 
+ 
+  let commandfile = bot.commands.get(command.slice(prefix.length));
+  if(commandfile) commandfile.run(bot,message,args);
+})
+ 
+
+
+ 
 
 bot.login(config.token)
-  bot.on('message', async message => {
-    bot.emit('checkMessage', message);
-    let prefix = config.prefix;
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0]
-    let Args = messageArray.slice(1);
-    var args = message.content.substring(prefix.length).split(" ");
-    if(message.content.startsWith(prefix)){
-    let commandeFile = bot.commands.get(cmd.slice(prefix.length));
-    if(commandeFile) commandeFile.run(bot, message, Args, args)}
-    ;})
-  module.exports = {
-    bot: bot
-}
+
+}, 5000)
