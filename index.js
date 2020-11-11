@@ -106,6 +106,7 @@ bot.on("message", async message => {
  
   if(message.author.bot) return;
   if(message.channel.type === 'dm') return;
+  if (!message.content.startsWith(config.prefix)) return
   let content = message.content.split(" ");
   let command = content[0];
   let args = content.slice(1);
