@@ -41,6 +41,9 @@ module.exports.run = async(bot, message, args) => {
             return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, tu ne peux pas te kick toi-meme!`),
              console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : a essayé de se kick sois-meme`)
 
+            if(member === config.owner1 || member === config.owner2)
+                return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, tu essaye de kick mon fondateur? ${emote.nani}`),
+                 console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : a essayé de kick un fondateur`)
 
     //verifie si la personne est kickable
         if(!member.kickable) 

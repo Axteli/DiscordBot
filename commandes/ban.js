@@ -1,4 +1,6 @@
 const Discord = require('discord.js')
+const config = require('../config.json')
+const emote = require('../emote.json')
 module.exports.run = async(bot, message, args) => {
 
     message.delete()
@@ -40,6 +42,9 @@ module.exports.run = async(bot, message, args) => {
             return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, tu ne peux pas te ban toi-meme!`),
              console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : ${message.author.username} a essayé de se ban sois-meme`)
 
+        if(member === config.owner1 || member === config.owner2)
+            return message.channel.send(`<a:tickred:764793956813766687> Erreur | ${message.author.username}, tu essaye de ban mon fondateur? ${emote.nani}`),
+             console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : a essayé de ban un fondateur`)
 
     //verifie si la personne est banable
         if(!member.banable) 
