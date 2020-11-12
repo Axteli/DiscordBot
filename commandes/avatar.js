@@ -15,6 +15,24 @@ module.exports.run = async(bot, message, args) => {
         return console.log(`commande : avatar | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
     }
     
+
+//si args0 est égal a server alors montré l'avatar du serveur
+    if (args[0] === 'server') {
+        const avatar = new Discord.MessageEmbed()
+
+         .setTitle(`Avatar du serveur`)
+         .setURL(message.guild.iconURL({ format: 'png', dynamic: true, size: 4096 }))
+         .setImage(message.guild.iconURL({ format: 'png', dynamic: true, size: 4096 }))
+         .setDescription(`Voici l'avatar du serveur ${message.guild.name}`)
+         .setColor("#527a9e")
+         .setFooter(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png', dynamic: false, size: 512 }))
+
+        message.channel.send(avatar)
+        return console.log(`commande : avatar | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}| détails : avatar du server demandé`)
+}
+
+
+
 //ou alors envoyé l'avatar de la personne qui a été mentionné
     const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 
@@ -39,9 +57,6 @@ module.exports.run = async(bot, message, args) => {
         }
 
  }
-
-    
-
 
 module.exports.help = {
 name: "avatar"
