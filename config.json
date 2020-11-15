@@ -3,5 +3,8 @@
     "token": "your token",
 
     "owner1": "id of first owner",
-    "owner2": "id of second owner"
+    "owner2": "id of second owner",
+
+    "suggestChannel": "id_of_suggestion_Channel",
+    "logsChannel": "id_of_logs_channel"
 }
