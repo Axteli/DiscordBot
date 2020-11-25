@@ -4,10 +4,12 @@ const bot = new Discord.Client();
 const fs = require("fs");
 const chalk = require("chalk")
 const emote = require('./emote.json')
+
 bot.commands = new Discord.Collection();
 bot.description = new Discord.Collection();
 bot.usage = new Discord.Collection();
-
+bot.example = new Discord.Collection();
+bot.aliases = new Discord.Collection();
 
 console.log(chalk.bgBlue(`Le bot vas démarrer dans 3 secondes...`))
 
@@ -30,7 +32,7 @@ setTimeout(() => {
 		jsfile.forEach((f, i) =>{
   			let props = require(`./commandes/${f}`);
   			console.log(`${f} chargée!`);
-  			bot.commands.set(props.help.name, props);
+            bot.commands.set(props.help.name, props);
 		});
 
         console.log(chalk.bgRed(`${jsfile.length} commandes chargées!`));
@@ -90,13 +92,16 @@ setTimeout(() => {
 		console.log(`\nServeurs :`)
 
         bot.guilds.cache.forEach((guild) => {
-        console.log(`   - ${guild.name} - ${guild.id} - admin : ${guild.me.hasPermission("ADMINISTRATOR") ? `oui` : `non`}`)})
+			console.log(`   - ${guild.name} - ${guild.id} - admin : ${guild.me.hasPermission("ADMINISTRATOR") ? `oui` : `non`}`)
+		})
 
         console.log(`\nBot:\n    ${bot.user.username} - ${bot.user.id}`)
 
-        console.log(`\nConfiguration:\n   Préfixe: ${config.prefix} - Administrateur1: ${config.owner1} - Administrateur2: ${config.owner2}`)
+		const owner1 = bot.users.cache.get(config.owner1)
+		const owner2 = bot.users.cache.get(config.owner2)
+        console.log(`\nConfiguration:\n   Préfixe: ${config.prefix} - Administrateur1: ${owner1.tag} (${owner1.id}) - Administrateur2: ${owner2.tag} (${owner2.id})`)
 
-        console.log(chalk.cyan(`\nLogs de commandes:\n`))
+		console.log(chalk.cyan(`\nLogs de commandes:\n`))
 
         const channel = bot.channels.cache.get(`${config.logsChannel}`);
         const embed = new Discord.MessageEmbed()
