@@ -1,6 +1,8 @@
 {
     "prefix": "$",
     "token": "your token",
+    
+    "embedColor": "RANDOM",
 
     "owner1": "id of first owner",
     "owner2": "id of second owner",
