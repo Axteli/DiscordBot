@@ -1,18 +1,24 @@
 {
-  "name": "wikibot",
+  "name": "discordbot",
   "version": "1.0.0",
-  "description": "a bot for the discord server wiki shapez.io",
+  "description": "a bot discord",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Axteli",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Axteli/DiscordBot.git"
+  },
+  "author": "Axtéli",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Axteli/DiscordBot/issues"
+  },
+  "homepage": "https://github.com/Axteli/DiscordBot#readme",
   "dependencies": {
     "chalk": "^4.1.0",
-    "discord.js": "^12.4.1",
-    "moment": "^2.29.1",
-    "ms": "^2.1.2",
-    "ops": "0.0.1"
+    "discord.js": "^12.5.1",
+    "moment": "^2.29.1"
   }
 }
