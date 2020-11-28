@@ -1,10 +1,11 @@
 const Discord = require('discord.js')
+const config = require('../config.json')
 module.exports.run = async(bot, message, args) => {
     
     message.delete();
 
     const embedPing = new Discord.MessageEmbed()
-     .setColor("#527a9e")
+     .setColor(config.embedColor)
      .setDescription(`:ping_pong: Latence du bot : ${Date.now() - message.createdTimestamp}ms \n :heart: Latence de l'API : ${Math.round(bot.ws.ping)}ms`)
     message.channel.send(embedPing)
     

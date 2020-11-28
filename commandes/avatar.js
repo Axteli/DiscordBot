@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const emote = require('../emote.json')
+const config = require('../config.json')
 module.exports.run = async(bot, message, args) => {
 
     message.delete()
@@ -11,7 +12,7 @@ module.exports.run = async(bot, message, args) => {
          .setURL(message.author.displayAvatarURL({ format: 'png', dynamic: true, size: 4096 }))
          .setImage(message.author.displayAvatarURL({ format: 'png', dynamic: true, size: 4096 }))
          .setDescription(`${message.author.username}, voici ton avatar!`)
-         .setColor("#527a9e")
+         .setColor(config.embedColor)
         message.channel.send(avatarembed)
         return console.log(`commande : avatar | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
     }
@@ -25,7 +26,7 @@ module.exports.run = async(bot, message, args) => {
          .setURL(message.guild.iconURL({ format: 'png', dynamic: true, size: 4096 }))
          .setImage(message.guild.iconURL({ format: 'png', dynamic: true, size: 4096 }))
          .setDescription(`Voici l'avatar du serveur ${message.guild.name}`)
-         .setColor("#527a9e")
+         .setColor(config.embedColor)
          .setFooter(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png', dynamic: false, size: 512 }))
 
         message.channel.send(avatar)
@@ -50,7 +51,7 @@ module.exports.run = async(bot, message, args) => {
          .setURL(user.user.displayAvatarURL({ format: 'png', dynamic: true, size: 4096 }))
          .setImage(user.user.displayAvatarURL({ format: 'png', dynamic: true, size: 4096 }))
          .setDescription(`Voici l'avatar de ${user.user.tag}`)
-         .setColor("#527a9e")
+         .setColor(config.embedColor)
          .setFooter(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png', dynamic: false, size: 512 }))
         message.channel.send(avatar)
         console.log(`commande : avatar | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}| membre visé : ${user})`)

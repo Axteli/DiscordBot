@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 const moment = require('moment')
-var emote = require('../emote.json')
+const config = require('../config.json')
+const emote = require('../emote.json')
 module.exports.run = async(bot, message, args) => {
 
     message.delete();
@@ -27,7 +28,7 @@ module.exports.run = async(bot, message, args) => {
     }
 
     const serverinfo = new Discord.MessageEmbed()
-     .setColor("#527a9e")
+     .setColor(config.embedColor)
      .setTitle(`Information sur : ${message.guild.name}`)
      .addField(`📃 | Nom du serveur`, `${message.guild.name}`, true)
      .addField(`👑 | Fondateur`, `<@${message.guild.ownerID}>\n(${message.guild.ownerID})`, true)

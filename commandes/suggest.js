@@ -26,7 +26,7 @@ module.exports.run = async(bot, message, args) => {
         const embed = new Discord.MessageEmbed()
          .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
          .setDescription(suggestion)
-         .setColor("#527a9e")
+         .setColor(config.embedColor)
          .setFooter(`${message.guild.name}`, icon)
          .setTimestamp()
 

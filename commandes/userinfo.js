@@ -1,6 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
 const emote = require('../emote.json')
+const config = require('../config.json')
 module.exports.run = async(bot, message, args) => {
 
     message.delete();
@@ -20,7 +21,7 @@ module.exports.run = async(bot, message, args) => {
 
 
     let embed = new MessageEmbed()
-     .setColor("#527a9e")
+     .setColor(config.embedColor)
      .setTitle(`Information sur l'utilisateur : ${member.user.username}`)
      .setThumbnail(member.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
      .addField("🛡 | tag", member.user.tag, true)

@@ -74,7 +74,7 @@ module.exports.run = async(bot, message, args) => {
     //envoie le mp au membre banni
     const banmp = new Discord.MessageEmbed()
 
-     .setColor("#527a9e")
+     .setColor(config.embedColor)
      .setTitle(`Tu a été ban du serveur : ${message.guild}`)
      .setDescription(`Par : ${message.author.tag}\nRaison : ${reason}`)
      .setThumbnail(message.guild.iconURL())
@@ -90,7 +90,7 @@ module.exports.run = async(bot, message, args) => {
 
     const banembed = new Discord.MessageEmbed()
 
-     .setColor("#527a9e")
+     .setColor(config.embedColor)
      .setTitle('Membre banni')
      .setThumbnail(member.user.displayAvatarURL())
      .setDescription(`Membre banni : ${member}\nPar : ${message.author.tag}\nRaison : ${reason}`)

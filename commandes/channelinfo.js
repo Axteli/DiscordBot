@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const emote = require('../emote.json')
+const config = require('../config.json')
 const moment = require('moment')
 module.exports.run = async(bot, message, args) => {
 
@@ -25,7 +26,7 @@ module.exports.run = async(bot, message, args) => {
 
 	
    		const embed = new Discord.MessageEmbed()
-    	 .setColor("#527a9e")
+    	 .setColor(config.embedColor)
     	 .setTitle(`Information sur le salon textuel : ${channel.name}`)
     	 .addField(`🔧 | Description`, channel.topic !== null ? channel.topic : 'Aucune', false)
     	 .addField(`📃 | Nom`, channel.name, true)
@@ -46,7 +47,7 @@ module.exports.run = async(bot, message, args) => {
 
 
 		const embed = new Discord.MessageEmbed()
-		 .setColor("#527a9e")
+		 .setColor(blabla)
 		 .setTitle(`Information sur la catégorie : ${channel.name}`)
 		 .addField(`📃 | Nom`, channel.name, true)
 		 .addField(`🆔 | Id`, channel.id, true)
@@ -65,7 +66,7 @@ module.exports.run = async(bot, message, args) => {
 
 		const embed = new Discord.MessageEmbed()
 		 .setThumbnail(icon)
-		 .setColor("#527a9e")
+		 .setColor(blabla)
 		 .setTitle('Information sur le channel vocal : ' + channel.name)
 		 .addField(`📃 | Nom`, channel.name, true)
 		 .addField(`🆔 | Id`, channel.id, true)

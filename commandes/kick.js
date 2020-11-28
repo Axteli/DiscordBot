@@ -76,7 +76,7 @@ module.exports.run = async(bot, message, args) => {
     //envoie le mp au membre kické
     const kickmp = new Discord.MessageEmbed()
 
-     .setColor("#527a9e")
+     .setColor(config.embedColor)
      .setTitle(`Tu a été kick du serveur : ${message.guild}`)
      .setDescription(`Par : ${message.author.tag}\nRaison : ${reason}`)
      .setThumbnail(message.guild.iconURL())
@@ -91,7 +91,7 @@ module.exports.run = async(bot, message, args) => {
 
     const kickembed = new Discord.MessageEmbed()
 
-     .setColor("#527a9e")
+     .setColor(config.embedColor)
      .setTitle('Membre kické')
      .setThumbnail(member.user.displayAvatarURL())
      .setDescription(`Membre kické : ${member}\nPar : ${message.author.tag}\nRaison : ${reason}`)
