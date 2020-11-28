@@ -85,5 +85,9 @@ module.exports.run = async(bot, message, args) => {
 }
 
 module.exports.help = {
-name: "channelinfo"
+	name: "channelinfo",
+	aliases: ["ci", "saloninfo"],
+	description: "Affiche les informations sur un salon du serveur.",
+	usage: "channelinfo [channel]",
+	example: ["channelinfo", "channelinfo #support"]
 }
