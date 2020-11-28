@@ -49,5 +49,9 @@ module.exports.run = async(bot, message, args) => {
 }
 
 module.exports.help = {
-name: "clear"
+    name: "clear",
+    aliases: ["purge", "prune"],
+    description: "Supprime des messages en masse.",
+    usage: "clear <number>",
+    example: "clear 10"
 }
