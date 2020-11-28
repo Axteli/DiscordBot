@@ -42,5 +42,9 @@ module.exports.run = async(bot, message, args) => {
 }
 
 module.exports.help = {
-	name: "fakeban"
+	name: "fakeban",
+	aliases: ["fban", "fauxban"],
+	description: "Simule un faux ban.",
+	usage: "fakeban <member>",
+	example: "fakeban @Axtéli"
 }
