@@ -8,5 +8,13 @@
     "owner2": "id of second owner",
 
     "suggestChannel": "id_of_suggestion_Channel",
-    "logsChannel": "id_of_logs_channel"
+    "logsChannel": "id_of_logs_channel",
+
+    "status": {
+        "one": "status",
+        "two": "status",
+        "three": "status",
+        "four": "status"
+    }
+
 }
