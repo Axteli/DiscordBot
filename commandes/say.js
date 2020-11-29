@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const emote = require('../emote.json')
+const emote = require('../info/emote.json')
 module.exports.run = async(bot, message, args) => {
 
     message.delete();

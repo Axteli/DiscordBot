@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
-const emote = require('../emote.json')
-const config = require('../config.json')
+const emote = require('../info/emote.json')
+const config = require('../info/config.json')
 module.exports.run = async(bot, message, args) => {
 
     message.delete();
