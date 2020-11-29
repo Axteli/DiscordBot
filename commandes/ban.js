@@ -105,7 +105,7 @@ module.exports.run = async(bot, message, args) => {
 module.exports.help = {
     name: "ban",
     aliases: "bannir",
-    descrpition: "Banni un membre du serveur.",
+    description: "Banni un membre du serveur.",
     usage: "ban <member> [reason]",
     example: ["ban @Axtéli", "ban @Axtéli spam"]
 }
