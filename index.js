@@ -20,11 +20,11 @@ setTimeout(() => {
   		if(err) console.log(err);
 
   		let jsfile = files.filter(f => f.split(".").pop() === "js");
-  		console.log(chalk.red(`Chargement des commandes...`))
+  		console.log(chalk.magenta(`Chargement des commandes...`))
 
 
   		if(jsfile.length <= 0){
-    	console.log(chalk.bgRed("Je ne trouve pas les commandes"));
+    	console.log(chalk.bgMagenta("Je ne trouve pas les commandes"));
     	return;
 		}
 
@@ -36,7 +36,7 @@ setTimeout(() => {
 			bot.aliases.set(props.help.aliases, props)
 		});
 
-        console.log(chalk.bgRed(`${jsfile.length} commandes chargées!`));
+	console.log(chalk.bgMagenta(`${jsfile.length} commandes chargées!`));
 	});
 
 
