@@ -22,7 +22,7 @@ module.exports = (bot, message) => {
 
         bot.user.setActivity(jeux, 
 
-            {type: "STREAMING", 
+            {type: config.status.type, 
             url: `https://twitch.tv/${bot.user.username}`}
         );
 

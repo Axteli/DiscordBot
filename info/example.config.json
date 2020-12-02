@@ -12,6 +12,7 @@
     "logsChannel": "id_of_logs_channel",
 
     "status": {
+        "type": "type_of_status",
         "one": "status",
         "two": "status",
         "three": "status",
