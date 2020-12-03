@@ -30,6 +30,7 @@ module.exports.run = async(bot, message, args) => {
          .setColor(config.embedColor)
          .setFooter(message.member.user.username, message.member.user.displayAvatarURL())
         message.channel.send(embed)
+        console.log(`commande : help | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})|commandes: ${command.help.name}`)
 
 
     }else{
@@ -51,6 +52,7 @@ module.exports.run = async(bot, message, args) => {
          .setColor(config.embedColor)
          .setFooter(message.member.user.username, message.member.user.displayAvatarURL())
         message.channel.send(embed)
+        console.log(`commande : help | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
     }
 
 
