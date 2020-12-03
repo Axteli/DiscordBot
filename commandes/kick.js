@@ -103,5 +103,9 @@ module.exports.run = async(bot, message, args) => {
 }
 
 module.exports.help = {
-    name: "kick"
+    name: "kick",
+    aliases: "expulser",
+    description: "Expulse un membre.",
+    usage: "kick <member> [reason]",
+    example: ["kick @Axtéli", "kick @Axtéli flood"]
 }
