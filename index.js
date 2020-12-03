@@ -31,9 +31,9 @@ setTimeout(() => {
 
 		jsfile.forEach((f, i) =>{
   			let props = require(`./commandes/${f}`);
-  			console.log(`${f} chargée!`);
 			bot.commands.set(props.help.name, props);
 			bot.aliases.set(props.help.aliases, props)
+			console.log(`${f} chargée!`);
 		});
 
 	console.log(chalk.bgMagenta(`${jsfile.length} commandes chargées!`));
@@ -55,7 +55,7 @@ setTimeout(() => {
 			const evt = require(`./event/${f}`)
 			const evtName = f.split(".")[0];
 			bot.on(evtName, evt.bind(null, bot));
-    		console.log(`${f} chargée!`);
+    		console.log(`${f} chargé!`);
     	});
 
     	console.log(chalk.bgGreen(`${eventjsfile.length} events chargées!`));
