@@ -1,8 +1,7 @@
 const Discord = require('discord.js')
 const config = require('../info/config.json')
 module.exports.run = async(bot, message, args) => {
-    
-    message.delete();
+
 
     const embedPing = new Discord.MessageEmbed()
      .setColor(config.embedColor)

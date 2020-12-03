@@ -29,9 +29,14 @@ module.exports = (bot, message) => {
     }, 4000);
     console.log(`Le status est optérationnel!`)
 
+    if(config.deleteCommands === 'yes' || config.deleteCommands === 'no') {
+    }else{
+        console.error(chalk.red("la valeur 'deleteCommands' n'est pas définis sur 'yes' ou 'no', les commandes ne seront donc pas supprimé!"))
+    }
+
     const channel = bot.channels.cache.get(`${config.logsChannel}`);
 	if(!channel) {
-		console.log(chalk.red("je ne trouve pas le salon de logs!"))
+		console.error(chalk.red("je ne trouve pas le salon de logs!"))
 	}else{
         const embed = new Discord.MessageEmbed()
          .setColor(`GREEN`)

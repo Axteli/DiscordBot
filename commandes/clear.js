@@ -2,7 +2,6 @@ const Discord = require('discord.js')
 const emote = require('../info/emote.json')
 module.exports.run = async(bot, message, args) => {
 
-    message.delete();
     
     //vérifie les permissions
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {

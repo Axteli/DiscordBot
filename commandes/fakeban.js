@@ -3,7 +3,6 @@ var config = require('../info/config.json')
 var emote = require('../info/emote.json')
 module.exports.run = async(bot, message, args) => {
 
-  	message.delete();
 
   	//si aucune membre n'as été définis
   	if (!args[0]) {

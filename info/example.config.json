@@ -11,6 +11,8 @@
     "suggestChannel": "id_of_suggestion_Channel",
     "logsChannel": "id_of_logs_channel",
 
+    "deleteCommands": "yes/no",
+
     "status": {
         "type": "type_of_status",
         "one": "status",

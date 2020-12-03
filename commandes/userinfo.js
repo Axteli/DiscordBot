@@ -4,7 +4,6 @@ const emote = require('../info/emote.json')
 const config = require('../info/config.json')
 module.exports.run = async(bot, message, args) => {
 
-    message.delete();
         
     //si aucun utilisateur recherché alors member = l'auteur du message
     //sinon chercher le membre et le définir

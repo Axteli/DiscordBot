@@ -4,8 +4,6 @@ const config = require('../info/config.json')
 const emote = require('../info/emote.json')
 module.exports.run = async(bot, message, args) => {
 
-    message.delete();
-
 
     var AFK = [];
     if(!message.guild.afkChannel) {

@@ -3,7 +3,6 @@ const emote = require('../info/emote.json')
 const config = require('../info/config.json')
 module.exports.run = async(bot, message, args) => {
 
-    message.delete()
 
     //si personne n'a été précisé
     if (!args[0]) {

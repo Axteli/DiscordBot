@@ -4,7 +4,6 @@ const config = require('../info/config.json')
 const moment = require('moment')
 module.exports.run = async(bot, message, args) => {
 
-	message.delete();
 
    	const icon = message.guild.iconURL({ format: 'png', dynamic: true, size: 4096 })
 
