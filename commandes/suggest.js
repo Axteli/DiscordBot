@@ -1,12 +1,18 @@
 const Discord = require('discord.js')
 const config = require('../info/config.json')
 const emote = require('../info/emote.json')
+const chalk = require('chalk')
 module.exports.run = async(bot, message, args) => {
 
 
     const suggestChannel = bot.channels.cache.get(config.suggestChannel)
     const guild = suggestChannel.guild.id
 
+    if(!suggestChannel) {
+        return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, le salon de suggestion est introuvable!`),
+         console.log(`commande : suggest | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`),
+         console.error(chalk.red("Le salon de suggestion est introuvable!"))
+    }
 
     if (`${message.guild.id}` === `${guild}`) {
 
