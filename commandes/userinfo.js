@@ -19,6 +19,31 @@ module.exports.run = async(bot, message, args) => {
     }
 
 
+    const getPresenceStatus = status => {
+        let presence = ''
+
+        switch(Object.keys(status)[0]) {
+            case 'desktop': 
+            presence = 'Ordinateur';
+            break;
+            case 'mobile':
+            presence = 'Mobile';
+            case 'web':
+            presence = 'Internet';
+            break;
+        }
+    return presence
+    }
+
+
+    const status = {
+        online: emote.status.online+" en ligne",
+        offline: emote.status.offline+" hors ligne",
+        dnd: emote.status.dnd+" ne pas déranger",
+        idle: emote.status.idle+ " inactif",
+        streaming: emote.status.streaming+" en stream"
+    }
+
     let embed = new MessageEmbed()
      .setColor(config.embedColor)
      .setTitle(`Information sur l'utilisateur : ${member.user.username}`)
@@ -26,7 +51,9 @@ module.exports.run = async(bot, message, args) => {
      .addField("🛡 | tag", member.user.tag, true)
      .addField("😀 | Surnom", `${member.nickname !== null ? `${member.nickname}` : "Aucun"}`, true)
      .addField("🆔 | ID", member.user.id, true)
-     .addField('💭 | type', member.user.bot ? 'robot' : 'humain', false)
+     .addField('💭 | type', member.user.bot ? 'robot' : 'humain', true)
+     .addField('Statut', status[member.user.presence.status], true)
+     .addField('Plateforme', member.user.bot ?'un bot n\'as pas de plateforme!':getPresenceStatus(member.user.presence.clientStatus) , true)
      .addField("📅 | Date de création du compte", moment(member.user.createdAt).format('[le] DD/MM/YYYY [à] HH:mm:ss'), true)
      .addField("📆 | Date d'arrivée", moment(member.user.joinedAt).format('[le] DD/MM/YYYY [à] HH:mm:ss'), true)
      .setFooter(message.member.user.username, message.member.user.displayAvatarURL())
