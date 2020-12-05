@@ -1,4 +1,3 @@
-  
 {
     "partner": "partner_emote_id",
     "verified": "verified_emote_id",
@@ -7,10 +6,19 @@
     "tick": "tick_emote_id",
     "neutral": "neutral_emote",
     "cross": "cross_emote_id",
-    "status_online": "status_online_emote_id",
-    "status_offline": "status_offline_emote_id",
-    "status_idle": "status_idle_emote_id",
-    "status_dnd": "status_dnd_emote_id",
-    "status_streaming": "status_streaming_emote_id"
+
+    "logo": {
+        "github": "github_emote_id",
+        "discordjs": "discordjs_emote_id",
+        "nodejs": "nodejs_emote_id"
+    },
+
+    "status": {
+        "online": "status_online_emote_id",
+        "offline": "status_offline_emote_id",
+        "idle": "status_idle_emote_id",
+        "dnd": "status_dnd_emote_id",
+        "streaming": "status_streaming_emote_id"
+    }
 
 }

@@ -8,12 +8,12 @@ module.exports.run = async(bot, message, args) => {
     if(message.author.id === config.owner1 || message.author.id === config.owner2) {
 
         //envoyer et éditer le message 
-        const msg = await message.channel.send(`${emote.status_offline} Le bot vas s'éteindre dans 5 secondes `);
-            setTimeout(() => { msg.edit(`${emote.status_offline} Le bot vas s'éteindre dans 4 secondes `); }, 1000);
-            setTimeout(() => { msg.edit(`${emote.status_offline} Le bot vas s'éteindre dans 3 secondes `);}, 2000);
-            setTimeout(() => { msg.edit(`${emote.status_offline} Le bot vas s'éteindre dans 2 secondes `);}, 3000);
-            setTimeout(() => { msg.edit(`${emote.status_offline} Le bot vas s'éteindre dans 1 seconde `);}, 4000);
-            setTimeout(() => { msg.edit(`${emote.status_offline} Le bot s'éteint...`);}, 5000)
+        const msg = await message.channel.send(`${emote.status.offline} Le bot vas s'éteindre dans 5 secondes `);
+            setTimeout(() => { msg.edit(`${emote.status.offline} Le bot vas s'éteindre dans 4 secondes `); }, 1000);
+            setTimeout(() => { msg.edit(`${emote.status.offline} Le bot vas s'éteindre dans 3 secondes `);}, 2000);
+            setTimeout(() => { msg.edit(`${emote.status.offline} Le bot vas s'éteindre dans 2 secondes `);}, 3000);
+            setTimeout(() => { msg.edit(`${emote.status.offline} Le bot vas s'éteindre dans 1 seconde `);}, 4000);
+            setTimeout(() => { msg.edit(`${emote.status.offline} Le bot s'éteint...`);}, 5000)
 
 
         //changer le statut et envoyer un message dans la console
@@ -27,7 +27,7 @@ module.exports.run = async(bot, message, args) => {
         }else{
             const embed = new Discord.MessageEmbed()
              .setColor(`#00000`)
-             .setDescription(`${emote.status_offline} | Le bot vas s'éteindre!`)
+             .setDescription(`${emote.status.offline} | Le bot vas s'éteindre!`)
              .setTimestamp()
             await channel.send(embed);
         }

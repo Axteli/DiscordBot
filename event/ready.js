@@ -40,7 +40,7 @@ module.exports = (bot, message) => {
 	}else{
         const embed = new Discord.MessageEmbed()
          .setColor(`GREEN`)
-         .setDescription(`${emote.status_online} | Le bot est allumé!`)
+         .setDescription(`${emote.status.online} | Le bot est allumé!`)
          .setTimestamp()
         channel.send(embed);
         console.log('log envoyé!')
