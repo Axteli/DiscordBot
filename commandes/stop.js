@@ -38,8 +38,8 @@ module.exports.run = async(bot, message, args) => {
     } else {
 
         //envoyer le message d'erreur si la personne n'est pas owner du bot
-        message.channel.send(`${emote.cross} Erreur | ${message.author.username}, tu ne peux pas éteindre le bot!`)
-         console.log(`commande : stop | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : ne peux pas éteindre le bot`);
+        message.channel.send(`${emote.cross} Erreur | ${message.author.username}, cette commande est réservé au administrateur du bot!`)
+         console.log(`commande : stop | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : ${message.author.tag} n'est pas admin du bot`);
     }
 
 }
