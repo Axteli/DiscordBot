@@ -16,7 +16,7 @@ module.exports = (bot, message) => {
     if (!message.content.startsWith(config.prefix)) return
 
     if(config.deleteCommands === 'yes') {
-        message.delete().catch(err => {console.log(chalk.red('Je n\'est pas réussi à supprimer la commande! erreur: '+err))})
+        message.delete().catch(err => {console.error(chalk.red('Je n\'est pas réussi à supprimer la commande! erreur: '+err))})
     }
 
 

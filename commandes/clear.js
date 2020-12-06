@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 const emote = require('../info/emote.json')
 module.exports.run = async(bot, message, args) => {
 
-    
+
     //vérifie les permissions
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
         return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, tu n'as pas la permission "gérer les messages"!`),
@@ -16,35 +16,47 @@ module.exports.run = async(bot, message, args) => {
 
 
     //vérifier qu'un nombre est entré
-    if (!args[0]) {
+    if (!args[0] || args[0] === '0') {
         return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, merci d'entrer un nombre entre 1 et 100`),
-         console.log(`commande : clear | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : aucun nombre rentré.`)
-    };
+         console.log(`commande : clear | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : aucun nombre rentré`)
+        };
 
+    if(isNaN(args[0])) {
+        return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, il faut rentrer un nombre!`),
+        console.log(`commande : clear | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : la valeur rentrée n'est pas un nombre`)
+    }
 
     let deleteAmount;
-    //si nb de message a supprimé(args0) est plus grand que 100 alors le réduire a 100
-    //ou alors nb de message supprimé est égal a args0
+    //si nombre de message a supprimé(args0) est plus grand que 100 alors le réduire a 100
     if (parseInt(args[0]) > 100 ) {
         deleteAmount = 100;
 
-    } else {
+    }else{
+        //ou alors nombre de message supprimé est égal a args0
         deleteAmount = parseInt(args[0]);
     }
 
-    message.channel.bulkDelete(deleteAmount, true).catch(err => {
-        console.error(err);
-        message.channel.send(`${emote.cross} Erreur | ${messages.author.username}, Je n'ai pas réussi à clear les messages`);
-        return
-    });
 
-    //envoyé le message de finalisation
-    const msg = await message.channel.send(`${emote.tick} | ${message.author.username}, \`${deleteAmount} messages\` ont été supprimés!`)
 
-    //supprime l'embed au bout de 3sec
-    setTimeout(() => { msg.delete();}, 3000)
-    console.log(`commande : clear | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| nb de msg supprimés : ${deleteAmount}`)
+    message.delete().catch(err => {}).then(useless => {
+        message.channel.bulkDelete(deleteAmount, true)
+        .catch(err => {
+            return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, je n'ai pas réussi à clear les messages!`),
+            console.log(`commande : clear | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
+        }).then((messages) => {
+
+            //envoyé le message de finalisation
+            message.channel.send(`${emote.tick} | ${message.author.username}, \`${messages.size} messages\` ont été supprimés!`).then(msg => {
     
+            //supprime le message au bout de 3sec
+            console.log(`commande : clear | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| nombre de message supprimé : ${messages.size}`)
+            setTimeout(() => {msg.delete();}, 3000)
+            })
+
+        })
+    })
+
+
 }
 
 module.exports.help = {
