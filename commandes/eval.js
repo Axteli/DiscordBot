@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
-const config = require('../info/config.json')
-const emote = require('../info/emote.json')
+const config = require('../config/config.json')
+const emote = require('../config/emote.json')
 module.exports.run = async(bot, message, args) => {
 
     if(message.author.id === config.owner1 || message.author.id === config.owner2) {

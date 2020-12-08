@@ -1,9 +1,8 @@
 const Discord = require("discord.js")
-const config = require("./info/config.json")
+const config = require("./config/config.json")
 const bot = new Discord.Client();
 const fs = require("fs");
 const chalk = require("chalk")
-const emote = require('./info/emote.json')
 
 bot.commands = new Discord.Collection();
 bot.description = new Discord.Collection();
@@ -29,7 +28,7 @@ setTimeout(() => {
 		}
 
 
-		jsfile.forEach((f, i) =>{
+		jsfile.forEach((f) =>{
   			let props = require(`./commandes/${f}`);
 			bot.commands.set(props.help.name, props);
 			bot.aliases.set(props.help.aliases, props)
@@ -51,7 +50,7 @@ setTimeout(() => {
     	return;
 		};
 
-		eventjsfile.forEach((f, i) =>{
+		eventjsfile.forEach((f) =>{
 			const evt = require(`./event/${f}`)
 			const evtName = f.split(".")[0];
 			bot.on(evtName, evt.bind(null, bot));

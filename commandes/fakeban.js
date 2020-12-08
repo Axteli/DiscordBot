@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
-var config = require('../info/config.json')
-var emote = require('../info/emote.json')
+var config = require('../config/config.json')
+var emote = require('../config/emote.json')
 module.exports.run = async(bot, message, args) => {
 
 
