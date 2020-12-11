@@ -15,9 +15,6 @@ module.exports = (bot, message) => {
     
     if (!message.content.startsWith(config.prefix)) return
 
-    if(config.deleteCommands === 'yes') {
-        message.delete().catch(err => {console.error(chalk.red('Je n\'est pas réussi à supprimer la commande! erreur: '+err))})
-    }
 
 
     let content = message.content.split(" ");
@@ -26,6 +23,10 @@ module.exports = (bot, message) => {
   
   
     let commandfile = bot.commands.get(command.slice(prefix.length)) || bot.aliases.get(command.slice(prefix.length))
-    if(commandfile) commandfile.run(bot,message,args);
-
+    if(commandfile) {
+        if(config.deleteCommands === 'yes') {
+            message.delete().catch(err => {console.error(chalk.red('Je n\'est pas réussi à supprimer la commande! erreur: '+err))})
+        }    
+        commandfile.run(bot,message,args);
+    }
 }
