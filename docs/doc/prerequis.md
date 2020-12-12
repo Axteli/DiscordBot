@@ -18,3 +18,5 @@ Vous avez désormais votre bot! Attention à bien activer ces 2 options
 - la première sert à avoir accès au statut des membres
 - la deuxième permet au bot d'utiliser les id
 ![](https://raw.githubusercontent.com/Axteli/DiscordBot/master/docs/images/intents.png)
+
+###### [retour au README](https://github.com/Axteli/DiscordBot)
