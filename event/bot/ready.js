@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 const chalk = require('chalk')
-const config = require('../config/config.json')
-const emote = require('../config/emote.json')
+const config = require('../../config/config.json')
+const emote = require('../../config/emote.json')
 module.exports = (bot, message) => {
 
     console.log(`------------------------`)

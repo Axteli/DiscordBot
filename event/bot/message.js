@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const config = require('../config/config.json')
+const config = require('../../config/config.json')
 const chalk = require('chalk')
 module.exports = (bot, message) => {
 
