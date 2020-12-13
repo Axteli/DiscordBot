@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const fs = require('fs')
 const config = require("./config/config.json")
 const bot = new Discord.Client();
 
@@ -7,6 +8,7 @@ bot.description = new Discord.Collection();
 bot.usage = new Discord.Collection();
 bot.example = new Discord.Collection();
 bot.aliases = new Discord.Collection();
+bot.categories = fs.readdirSync('./commandes/');
 
 
 

@@ -26,6 +26,7 @@ module.exports.run = async(bot, message, args) => {
          .addField('Alias', command.help.aliases ? command.help.aliases : "aucun")
          .addField('Utilisation', '\`' + prefix + command.help.usage + `\``)
          .addField('Exemple',  example.replace(',', `\n${prefix}`))
+         .addField('Catégorie', command.help.categories)
          .setColor(config.embedColor)
          .setFooter(message.member.user.username, message.member.user.displayAvatarURL())
         message.channel.send(embed)
