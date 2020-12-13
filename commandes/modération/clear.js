@@ -1,5 +1,4 @@
-const Discord = require('discord.js')
-const emote = require('../config/emote.json')
+const emote = require('../../config/emote.json')
 module.exports.run = async(bot, message, args) => {
 
 
@@ -38,16 +37,16 @@ module.exports.run = async(bot, message, args) => {
 
 
 
-    message.delete().catch(err => {}).then(useless => {
+    message.delete().catch(() => { }).then(() => {
         message.channel.bulkDelete(deleteAmount, true)
-        .catch(err => {
+        .catch(() => {
             return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, je n'ai pas réussi à clear les messages!`),
             console.log(`commande : clear | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
         }).then((messages) => {
 
             //envoyé le message de finalisation
             message.channel.send(`${emote.tick} | ${message.author.username}, \`${messages.size} messages\` ont été supprimés!`).then(msg => {
-    
+
             //supprime le message au bout de 3sec
             console.log(`commande : clear | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| nombre de message supprimé : ${messages.size}`)
             setTimeout(() => {msg.delete();}, 3000)
