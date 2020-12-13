@@ -51,14 +51,14 @@ module.exports.run = async(bot, message, args) => {
     }
 
     //verifie si la personne est banable
-    if(!member.banable) {
+    if(!member.bannable) {
         return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, je ne peux pas bannir cette personne probablement car elle a un rôle au dessus du miens`),
          console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : la personne ne peut pas etre kick par le bot`)
     }
 
     //vérifie si la personne à ban n'est pas plus haut gradé
     if (message.member.roles.highest.comparePositionTo(member.roles.highest) < 1 && message.author.id !== message.guild.ownerID) {
-        return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, tu ne peux pas ban quelqu'un plus haut gradé que toi!`)
+        return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, tu ne peux pas ban quelqu'un plus haut gradé que toi!`),
          console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : a essayé de ban un membre plus haut gradé`)
     }
 
@@ -79,23 +79,24 @@ module.exports.run = async(bot, message, args) => {
      .setThumbnail(message.guild.iconURL())
      .setTimestamp()
 
-    member.send(banmp);
+    member.send(banmp).then(() => {
+        member.ban({reason: `${reason} | Par : ${message.author.tag} (${message.author.id})`}).catch(err => {
+            if(err) return message.channel.send('je n\'ai pas réussi à ban le membre! Tu ne devrais jamais recevoir une erreur comme celle-ci...')
+        })
 
-    //ban le membre après 500ms
-    setTimeout(() => { member.ban(`${reason} | Par : ${message.author.tag} (${message.author.id})`).catch(err => {
-        if(err) return message.channel.send('keskicpace')
-    })}, 500);
+    }).then(() => {
 
 
-    const banembed = new Discord.MessageEmbed()
+        const banembed = new Discord.MessageEmbed()
 
-     .setColor(config.embedColor)
-     .setTitle('Membre banni')
-     .setThumbnail(member.user.displayAvatarURL())
-     .setDescription(`Membre banni : ${member}\nPar : ${message.author.tag}\nRaison : ${reason}`)
+         .setColor(config.embedColor)
+         .setTitle('Membre banni')
+         .setThumbnail(member.user.displayAvatarURL())
+         .setDescription(`Membre banni : ${member}\nPar : ${message.author.tag}\nRaison : ${reason}`)
 
-    message.channel.send(banembed);
-    console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| membre visé : ${member}`)
+        message.channel.send(banembed);
+        console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| membre visé : ${member}`)
+    })
 
 
 
