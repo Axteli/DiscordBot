@@ -11,6 +11,9 @@
     "suggestChannel": "id_of_suggestion_Channel",
     "logsChannel": "id_of_logs_channel",
 
+    "welcomeChannel": "id_of_welcome_channel",
+    "goodbyeChannel": "id_of_goodbye_channel",
+
     "deleteCommands": "yes/no",
 
     "status": {
