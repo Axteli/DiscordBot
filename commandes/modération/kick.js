@@ -81,23 +81,23 @@ module.exports.run = async(bot, message, args) => {
      .setThumbnail(message.guild.iconURL())
      .setTimestamp()
 
-    member.send(kickmp);
+    member.send(kickmp).then(_msg => {
 
-    //kick le membre après 500ms
-    setTimeout(() => { member.kick(`${reason} | Par : ${message.author.tag} (${message.author.id})`)
-     .catch(err => {if(err) return message.channel.send('je n\'ai pas réussi a kick le membre! Tu ne devrais jamais recevoir une erreur comme celle-ci...')})}, 500);
+        member.kick(`${reason} | Par : ${message.author.tag} (${message.author.id})`)
+         .catch(err => {if(err) return message.channel.send('je n\'ai pas réussi à kick le membre! Tu ne devrais jamais recevoir une erreur comme celle-ci...')})
+    
+    }).then(() => {
 
+        const kickembed = new Discord.MessageEmbed()
 
-    const kickembed = new Discord.MessageEmbed()
+         .setColor(config.embedColor)
+         .setTitle('Membre kické')
+         .setThumbnail(member.user.displayAvatarURL())
+         .setDescription(`Membre kické : ${member}\nPar : ${message.author.tag}\nRaison : ${reason}`)
 
-     .setColor(config.embedColor)
-     .setTitle('Membre kické')
-     .setThumbnail(member.user.displayAvatarURL())
-     .setDescription(`Membre kické : ${member}\nPar : ${message.author.tag}\nRaison : ${reason}`)
-
-    message.channel.send(kickembed);
-    console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| membre visé : ${member}`)
-
+        message.channel.send(kickembed);
+        console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| membre visé : ${member}`)
+    })
 
 
 }
