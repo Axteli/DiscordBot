@@ -23,13 +23,13 @@ module.exports = async(bot, user) => {
          .addField('📆 | Date de création du compte', moment(user.user.createdAt).format('[Le] DD/MM/YYYY [à] HH:mm:ss'))
          .addField('📅 | Date d\'arrivée', moment(user.user.joinedAt).format('[Le] DD/MM/YYYY [à] HH:mm:ss'))
          .setTimestamp()
-        welcomeChannel.send(embed).then(() => {
+        logsChannel.send(embed).then(() => {
             console.log('Log de membre qui rejoint envoyé')
         })
 
     }
     if(!welcomeChannel) {
-        console.log(chalk.red('Je ne trouve pas le salon de bienvenue!'))
+        console.error(chalk.red('Je ne trouve pas le salon de bienvenue!'))
 
     }else{
 
