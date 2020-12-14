@@ -38,7 +38,7 @@ module.exports = async(bot, user) => {
         welcomeChannel.send(config.welcomeMessage
             .replace('userMention', `${user}`).replace('userTag', user.user.tag)
             .replace('serverName', user.guild.name).replace('userId', user.user.id)
-            .replace('memberCount', user.guild.memberCount)
+            .replace('memberCount', user.guild.memberCount).replace('userName', user.user.username)
         ).then(() => {
             console.log(`Bienvenue souhaiter à ${user.user.tag}`)
         })
