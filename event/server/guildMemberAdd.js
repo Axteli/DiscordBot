@@ -12,20 +12,21 @@ module.exports = async(bot, user) => {
         console.error(chalk.red('Je ne trouve pas le salon de logs!'))
     }else{
 
-        if(!logsChannel.guild === user.guild) return
+        if(logsChannel.guild === user.guild) {
 
-        const embed = new Discord.MessageEmbed()
-         .setColor('GREEN')
-         .setAuthor(user.user.tag, user.user.displayAvatarURL())
-         .setTitle('Un membre à rejoint')
-         .addField('🗣 | Membre', `${user}`, true)
-         .addField(':id: | Id', user.id, true)
-         .addField('📆 | Date de création du compte', moment(user.user.createdAt).format('[Le] DD/MM/YYYY [à] HH:mm:ss'))
-         .addField('📅 | Date d\'arrivée', moment(user.user.joinedAt).format('[Le] DD/MM/YYYY [à] HH:mm:ss'))
-         .setTimestamp()
-        logsChannel.send(embed).then(() => {
-            console.log('Log de membre qui rejoint envoyé')
-        })
+            const embed = new Discord.MessageEmbed()
+             .setColor('GREEN')
+             .setAuthor(user.user.tag, user.user.displayAvatarURL())
+             .setTitle('Un membre à rejoint')
+             .addField('🗣 | Membre', `${user}`, true)
+             .addField(':id: | Id', user.id, true)
+             .addField('📆 | Date de création du compte', moment(user.user.createdAt).format('[Le] DD/MM/YYYY [à] HH:mm:ss'))
+             .addField('📅 | Date d\'arrivée', moment(user.user.joinedAt).format('[Le] DD/MM/YYYY [à] HH:mm:ss'))
+             .setTimestamp()
+            logsChannel.send(embed).then(() => {
+                console.log('Log de membre qui rejoint envoyé')
+            })
+        }
 
     }
     if(!welcomeChannel) {
@@ -33,14 +34,15 @@ module.exports = async(bot, user) => {
 
     }else{
 
-        if(!welcomeChannel.guild === user.guild) return
+        if(welcomeChannel.guild === user.guild) {
 
-        welcomeChannel.send(config.welcomeMessage
-            .replace('userMention', `${user}`).replace('userTag', user.user.tag)
-            .replace('serverName', user.guild.name).replace('userId', user.user.id)
-            .replace('memberCount', user.guild.memberCount).replace('userName', user.user.username)
-        ).then(() => {
-            console.log(`Bienvenue souhaiter à ${user.user.tag}`)
-        })
+            welcomeChannel.send(config.welcomeMessage
+                .replace('userMention', `${user}`).replace('userTag', user.user.tag)
+                .replace('serverName', user.guild.name).replace('userId', user.user.id)
+                .replace('memberCount', user.guild.memberCount).replace('userName', user.user.username)
+            ).then(() => {
+                console.log(`Bienvenue souhaiter à ${user.user.tag}`)
+            })
+        }
     }
 }
