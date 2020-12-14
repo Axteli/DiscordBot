@@ -18,6 +18,7 @@
     "welcomeMessage": "welcome userMention!",
 
     "goodbyeChannel": "id_of_goodbye_channel",
+    "goodbyeMessage": "good bye userName",
 
     "deleteCommands": "yes/no",
 
