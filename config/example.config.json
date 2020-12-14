@@ -1,5 +1,8 @@
   
 {
+    "_commentaire": "pour la configuration => https://github.com/Axteli/Discordbot/tree/master/docs/doc/configuration.md",
+
+
     "prefix": "$",
     "token": "your token",
     
@@ -12,6 +15,8 @@
     "logsChannel": "id_of_logs_channel",
 
     "welcomeChannel": "id_of_welcome_channel",
+    "welcomeMessage": "welcome userMention!",
+
     "goodbyeChannel": "id_of_goodbye_channel",
 
     "deleteCommands": "yes/no",
