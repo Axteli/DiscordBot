@@ -65,5 +65,10 @@ module.exports.run = async(bot, message, args) => {
 
 }
 module.exports.help = {
-    name: "userinfo"
+    name: "userinfo",
+    aliases: "ui",
+    description: "Affiche les informations d'un utilisateur.",
+    usage: "userinfo [user]",
+    example: "userinfo",
+    categories: "info"
     }

@@ -49,5 +49,10 @@ module.exports.run = async(bot, message, args) => {
 }
 
 module.exports.help = {
-    name: "serverinfo"
+    name: "serverinfo",
+    aliases: "sinfo",
+    description: "Affiche les informations du serveur.",
+    usage: "serverinfo",
+    example: "serverinfo",
+    categories: "info"
     }

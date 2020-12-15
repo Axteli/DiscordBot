@@ -41,6 +41,7 @@ module.exports.help = {
     aliases: "binfo",
     description: "Affiche les informations sur le bot.",
     usage: "botinfo",
-    example: "botinfo"
+    example: "botinfo",
+    categories: "info"
     
 }

@@ -88,5 +88,6 @@ module.exports.help = {
 	aliases: ["ci", "saloninfo"],
 	description: "Affiche les informations sur un salon du serveur.",
 	usage: "channelinfo [channel]",
-	example: ["channelinfo", "channelinfo #support"]
+	example: ["channelinfo", "channelinfo #support"],
+	categories: "info"
 }
