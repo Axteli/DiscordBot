@@ -1,6 +1,8 @@
 const Discord = require('discord.js')
 const emote = require('../../config/emote.json')
+const config = require('../../config/config.json')
 module.exports.run = async(bot, message, args) => {
+
 
 
     //vérifie les permission
@@ -14,34 +16,66 @@ module.exports.run = async(bot, message, args) => {
          console.log(`commande : unban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : le bot n'as pas la permission de dé-bannir`)
     }
 
-    //définir le membre a unban
-    const member = message.mentions.members.first() || bot.members.cache.get(args[0]);
 
-    //si aucun membre reconnu
-    if (!member) {
-        return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, je ne trouve pas cet utilisateur !`),
-         console.log(`commande : ban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : l'utilisateur est introuvable`)
+
+    if (!args[0]) {
+            return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, il faut préciser un utilisateur!`),
+             console.log(`commande : unban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : le bot n'as pas la permission de dé-bannir`)
     }
 
-    //si la personne ne peut pas etre unban
-    if(!member.unbannable) {
-        return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, Je ne peux pas dé-bannir ce membre! Soit car l\'id est invalide, soit car cette personne n\'est pas banni.`),
-         console.log(`commande : unban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : la personne ne peut pas etre unban`)
-    }    
 
+
+    let member;
 
     try {
-        message.guild.fetchBans().then(bans => {
-            message.guild.members.unban(member)
-        })
-        message.channel.send(`${emote.tick} | ${member} a été unban !`)
-         console.log(`commande : unban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| membre visé : ${member}`)
-    } catch (e) {
-        return message.channel.send(`Une erreur s'est produite :/`)
+        member = await bot.users.fetch(args[0])
+    } catch (_e) {
+        return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, je ne trouve pas l'utilisateur!`)
     }
+
+
+
+    const reason = args[1] ? args.slice(1).join(' ') : 'non-fourni';
+
+        
+
+    message.guild.fetchBans().then( bans => {
+
+       const user = bans.find(ban => ban.user.id === member.id );
+
+        if (user) {
+
+
+                const embed = new Discord.MessageEmbed()
+                 .setThumbnail(user.user.displayAvatarURL({size : 1024}))
+                 .setTitle(`Membre unban`)
+                 .setColor(config.embedColor)
+                 .setDescription(`Membre : ${user.user}\nPar : ${message.author.tag}\n Raison de ban :`+ 
+                 `${user.reason != null ? user.reason : 'aucune'}\nRaison de deban : ${reason}`)
+
+                message.guild.members.unban(user.user.id, reason+`| Par : ${message.author.tag} (${message.author.id})`)
+                .then(() => message.channel.send(embed))
+
+
+            } else {
+                message.channel.send(`${emote.cross} Erreur | ${member.tag} n'est pas banni!`)
+            }
+
+
+    }).catch(e => {
+        console.log(e)
+        message.channel.send('Une erreur s\'est produite!')
+    });
+
+
 
 }
 
 module.exports.help = {
-    name: "unban"
+    name: "unban",
+    aliases: "deban",
+    description: "Deban un membre banni.",
+    usage: "unban <user> [reason]",
+    example: ["unban @Axtéli", "unban @Axtéli excuse accepté"],
+    categories: "moderation"
     }
