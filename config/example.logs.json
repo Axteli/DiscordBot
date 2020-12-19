@@ -1,0 +1,8 @@
+{
+	"_note": "guildmemberadd/remove contiennent aussi les message de bienvenue et pas que les logs",
+	"guildMemberAdd": "true/false",
+	"guildMemberRemove": "true/false",
+
+	"messageDelete": "true/false"
+
+}
