@@ -5,7 +5,9 @@ const moment = require('moment')
 module.exports.run = async(bot, message, args) => {
 
 
-   	const icon = message.guild.iconURL({ format: 'png', dynamic: true, size: 4096 })
+	const icon = message.guild.iconURL({ format: 'png', dynamic: true, size: 4096 })
+	const embedColor = config.embedColor
+
 
 	//défnir le channel
 	if (!args[0]) {
@@ -21,71 +23,165 @@ module.exports.run = async(bot, message, args) => {
 		console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | détails : salon introuvable`)
 	}
 
+
+
+	//si c'est un channel textuel
 	if(channel.type === 'text' || channel.type === 'news' || channel.type === 'store') {
 
-	
+
    		const embed = new Discord.MessageEmbed()
-    	 .setColor(config.embedColor)
-    	 .setTitle(`Information sur le salon textuel : ${channel.name}`)
-    	 .addField(`🔧 | Description`, channel.topic !== null ? channel.topic : 'Aucune', false)
-    	 .addField(`📃 | Nom`, channel.name, true)
-    	 .addField(`🆔 | Id`, channel.id, true)
-		 .addField(`🔞 | NSFW`, channel.nsfw ? `oui` : `non`, true)
-		 .addField(`📙 | Catégorie`, `${channel.parent !== null ? channel.parent : 'non-catégorisé'}
-		 	${channel.parentID !== null ? `(${channel.parentID})` : ''}`, true)
-		 .addField(`🎚 | Position dans la catégorie`, channel.position + 1, true)
-		 .addField(`📆 | Date de création`, moment(channel.createdAt).format('[le] DD/MM/YYYY [à] HH:mm:ss'), false)
-		 .setThumbnail(icon)
-		 .setFooter(message.member.user.username, message.member.user.displayAvatarURL())
-       
+			.setColor(embedColor)
+			.setTitle(`Information sur le salon textuel : ${channel.name}`)
+			.setThumbnail(icon)
+			.setFooter(message.member.user.username, message.member.user.displayAvatarURL())		 
+
+			.addFields(
+				{
+					name: `🔧 | Description`,
+					value: channel.topic !== null ? channel.topic : 'Aucune',
+					inline: false
+				},
+				{
+					name: `📃 | Nom`,
+					value: channel.name,
+					inline: true
+				},
+				{
+					name: `🆔 | Id`,
+					value: channel.id,
+					inline: true
+				},
+				{
+					name: `🔞 | NSFW`,
+					value: channel.nsfw ? `oui` : `non`,
+					inline: true	
+				},
+				{
+					name: `📙 | Catégorie`,
+					value: `${channel.parent !== null ? channel.parent : 'non-catégorisé'}\n${channel.parentID !== null ? `(${channel.parentID})` : ''}`,
+			 		inline:true
+				},
+				{
+					name: `🎚 | Position dans la catégorie`,
+					value: channel.position + 1,
+					inline: true
+				},
+				{
+					name: `📆 | Date de création`,
+					value: moment(channel.createdAt).format('[le] DD/MM/YYYY [à] HH:mm:ss'),
+					inline: false
+				}
+			)
+
+
    		message.channel.send(embed)
    		return console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | salon textuel : ${channel.name}(${channel.id})`)
 	}
 	
+
+
+	//si c'est une catégorie
 	if (channel.type === 'category') {
 
 
 		const embed = new Discord.MessageEmbed()
-		 .setColor(blabla)
-		 .setTitle(`Information sur la catégorie : ${channel.name}`)
-		 .addField(`📃 | Nom`, channel.name, true)
-		 .addField(`🆔 | Id`, channel.id, true)
-		 .addField(`🛋 | Salons`, channel.children.size, false)
-		 .addField(`🎚 | Position`, channel.rawPosition, false)
-		 .addField(`📆 | Date de création`, moment(channel.createdAt).format('[le] DD/MM/YYYY [à] HH:MM:SS'))
-		 .setThumbnail(icon)
-		 .setFooter(message.member.user.username, message.member.user.displayAvatarURL())
+			.setColor(embedColor)
+			.setTitle(`Information sur la catégorie : ${channel.name}`)
+			.setThumbnail(icon)
+			.setFooter(message.member.user.username, message.member.user.displayAvatarURL())
+
+			.addFields(
+				{
+					name: `📃 | Nom`,
+					value: channel.name,
+					inline: true
+				},
+				{
+					name: `🆔 | Id`,
+					value: channel.id,
+					inline : true	
+				},
+				{
+					name: `🛋 | Salons`,
+					value: channel.children.size,
+					inline: false
+				},
+				{
+					name: `🎚 | Position`,
+					value: channel.rawPosition,
+					inline: false
+				},
+				{
+					name: `📆 | Date de création`,
+					value: moment(channel.createdAt).format('[le] DD/MM/YYYY [à] HH:MM:SS')
+				}
+			)
+
+
+
+
 		message.channel.send(embed)
 		return console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | catégorie : ${channel.name}(${channel.id})`)
 	}
 
 
+
+	//si c'est un channel vocal
 	if(channel.type === 'voice') {
 
 
 		const embed = new Discord.MessageEmbed()
-		 .setThumbnail(icon)
-		 .setColor(blabla)
-		 .setTitle('Information sur le channel vocal : ' + channel.name)
-		 .addField(`📃 | Nom`, channel.name, true)
-		 .addField(`🆔 | Id`, channel.id, true)
-		 .addField('📦 | Débit binaire (bitrate)', channel.bitrate / 1000 + 'kbps', true)
-		 .addField(`🎤 | Membres connectés`, channel.members.size, false)
-		 .addField(`⛔ | Limite d'utilisateur connecté`, channel.userLimit === 0 ? 'aucune' : channel.userLimit, true)
-		 .addField(`📆 | Date de création`, moment(channel.createdAt).format('[le] DD/MM/YYYY [à] HH:MM:SS'), false)
-		 .setFooter(message.member.user.username, message.member.user.displayAvatarURL())
+			.setThumbnail(icon)
+			.setColor(embedColor)
+			.setTitle(`Information sur le salon vocal : ${channel.name}`)
+			.setFooter(message.member.user.username, message.member.user.displayAvatarURL())
+
+			.addFields(
+				{
+					name: `📃 | Nom`,
+					value: channel.name,
+					inline: true
+				},
+				{
+					name: `🆔 | Id`,
+					value: channel.id,
+					inline: true
+				},
+				{
+					name: '📦 | Débit binaire (bitrate)',
+					value: channel.bitrate / 1000 + 'kbps',
+					inline: true
+				},
+				{
+					name: `🎤 | Membres connectés`,
+					value: channel.members.size,
+					inline: false
+				},
+				{
+					name: `⛔ | Limite d'utilisateur connecté`,
+					value: channel.userLimit === 0 ? 'aucune' : channel.userLimit,
+					inline: true
+				},
+				{
+					name: `📆 | Date de création`,
+					value: moment(channel.createdAt).format('[le] DD/MM/YYYY [à] HH:MM:SS'),
+					inline: false
+				}
+			)
+
+
 		message.channel.send(embed)
 		return console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | salon vocal : ${channel.name}(${channel.id})`)
 	}
 
 
 	return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, je ne trouve pas le type du salon! Il m'est donc impossible d'affiché ses informations.`),
-	 console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | détails : type du channel introuvable`)
+	console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | détails : type du channel introuvable`)
 }
 
 module.exports.help = {
 	name: "channelinfo",
-	aliases: ["ci", "saloninfo"],
+	aliases: ["ci", "saloninfo", "cinfo", "sinfo"],
 	description: "Affiche les informations sur un salon du serveur.",
 	usage: "channelinfo [channel]",
 	example: ["channelinfo", "channelinfo #support"],
