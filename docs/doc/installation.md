@@ -15,4 +15,4 @@ Pour installer les dépendances, c'est très simple! Tout d'abord, ouvrez le ter
 ### Ce rendre dans un dossier avec cd
 Pour ce rendre dans un dossier, vous devez d'abord copier son chemin. Pour ça clique droit => propriétés et copiez "emplacement". Retournez dans votre terminal et tappez `cd le_chemin_du_fichier/le_nom_du_fichier`. Vous êtes désormais dans votre fichier!
 
-###### [retour au README](https://github.com/Axteli/DiscordBot)
+###### [retour au README](https://github.com/Axteli/DiscordBot#readme)
