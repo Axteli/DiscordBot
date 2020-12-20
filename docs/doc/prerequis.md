@@ -5,6 +5,7 @@ Voici la liste de tout les logiciels prérequis pour pouvoir faire fonctionné l
 - [Node.js](#Node.js)
 - [Git](#Git)
 - [Bot Discord](#Bot-Discord)
+- [Activer le mode développeur sur discord](#Activer-le-mode-développeur)
 
 ### Git
 Téléchargez git [ici](https://git-scm.com/download) puis suivez l'installation qui est une installation normal.
@@ -18,5 +19,9 @@ Vous avez désormais votre bot! Attention à bien activer ces 2 options
 - la première sert à avoir accès au statut des membres
 - la deuxième permet au bot d'utiliser les id
 ![](https://raw.githubusercontent.com/Axteli/DiscordBot/master/docs/images/intents.png)
+
+### Activer le mode développeur
+Le mode développeur permet d'avoir accès à certain id, ce qui est nécessaire à la configuration du bot.  
+Allez dans les paramètres de votre compte puis dans la catégorie "Apparence", activer "Mode développeur". Vous pouvez désormais obtenir l'id d'un utilisateur, d'un serveur ou d'un salon en faisant clique droit => copier l'identifiant!
 
 ###### [retour au README](https://github.com/Axteli/DiscordBot#readme)
