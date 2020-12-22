@@ -1,3 +1,4 @@
 /node_modules
 /config/config.json
 /config/emote.json
+/config/logs.json
