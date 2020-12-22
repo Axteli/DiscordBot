@@ -59,6 +59,11 @@ Si vous mettez un statut invalide, le bot n'aura aucun statut! Avec le statut st
 **status**: c'est ce qui se trouve après le type, il change toute les 4 secondes. Si vous ne voulez pas qu'il change, il vous suffit de mettre 4 fois le même statut. 
 
 ## emote.json
+### Introduction
+Dans ce fichier, vous allez définir quelles émojis le bot vas utiliser. Vous pouvez soit mettre l'id d'un emoji (par exemple : `<a:tick:724688652608864376>`) ou bien mettre des émojis de base de discord (par exemple: ✅). Il seront utilisé par quasiment chaque message du bot, autant bien les choisir!
+
+### Obtenir l'id d'un émoji
+
 ## logs.json
 
 ###### [retour au README](https://github.com/Axteli/DiscordBot#readme)
