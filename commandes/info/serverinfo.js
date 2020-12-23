@@ -3,7 +3,7 @@ const { embedColor } = require('../../config/config.json');
 const moment = require('moment');
 const emote = require('../../config/emote.json');
 
-module.exports.run = async (message) => {
+module.exports.run = async (_bot, message) => {
 
 
 	var AFK = [];

@@ -1,9 +1,9 @@
-const { MessageEmbed } = require('discord.js');
+const Discord = require('discord.js');
 const { cross } = require('../../config/emote.json');
 const { embedColor } = require('../../config/config.json');
 const moment = require('moment');
 
-module.exports.run = async (message, args) => {
+module.exports.run = async (_bot, message, args) => {
 
 
 	const icon = message.guild.iconURL({ format: 'png', dynamic: true, size: 4096 });
@@ -29,7 +29,7 @@ module.exports.run = async (message, args) => {
 	if (channel.type === 'text' || channel.type === 'news' || channel.type === 'store') {
 
 
-		const embed = new MessageEmbed()
+		const embed = new Discord.MessageEmbed()
 			.setColor(embedColor)
 			.setTitle(`Information sur le salon textuel : ${channel.name}`)
 			.setThumbnail(icon)
@@ -84,7 +84,7 @@ module.exports.run = async (message, args) => {
 	if (channel.type === 'category') {
 
 
-		const embed = new MessageEmbed()
+		const embed = new Discord.MessageEmbed()
 			.setColor(embedColor)
 			.setTitle(`Information sur la catégorie : ${channel.name}`)
 			.setThumbnail(icon)
@@ -130,7 +130,7 @@ module.exports.run = async (message, args) => {
 	if (channel.type === 'voice') {
 
 
-		const embed = new MessageEmbed()
+		const embed = new Discord.MessageEmbed()
 			.setThumbnail(icon)
 			.setColor(embedColor)
 			.setTitle(`Information sur le salon vocal : ${channel.name}`)

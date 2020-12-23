@@ -3,7 +3,7 @@ const { embedColor } = require('../../config/config.json');
 const moment = require('moment');
 const emote = require('../../config/emote.json');
 
-module.exports.run = async (message, args) => {
+module.exports.run = async (_bot, message, args) => {
 
 
 	//si aucun utilisateur recherché alors member = l'auteur du message
