@@ -1,27 +1,27 @@
-const Discord = require('discord.js')
-const emote = require('../../config/emote.json')
-const config = require('../../config/config.json')
-const moment = require('moment')
-module.exports.run = async(bot, message, args) => {
+const { MessageEmbed } = require('discord.js');
+const { cross } = require('../../config/emote.json');
+const { embedColor } = require('../../config/config.json');
+const moment = require('moment');
+
+module.exports.run = async(message, args) => {
 
 
-	const icon = message.guild.iconURL({ format: 'png', dynamic: true, size: 4096 })
-	const embedColor = config.embedColor
+	const icon = message.guild.iconURL({ format: 'png', dynamic: true, size: 4096 });
 
 
 	//défnir le channel
 	if (!args[0]) {
 		var channel = message.channel;
 	}else{
-		var channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0])
-	}
+		var channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]);
+	};
 
 
 	//si aucun channel n'a été définis alors erreur
 	if (!channel) {
-		return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, je ne trouve pas le salon!`),
-		console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | détails : salon introuvable`)
-	}
+		return message.channel.send(`${cross} Erreur | ${message.author.username}, je ne trouve pas le salon!`),
+		console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | détails : salon introuvable`);
+	};
 
 
 
@@ -29,7 +29,7 @@ module.exports.run = async(bot, message, args) => {
 	if(channel.type === 'text' || channel.type === 'news' || channel.type === 'store') {
 
 
-   		const embed = new Discord.MessageEmbed()
+   		const embed = new MessageEmbed()
 			.setColor(embedColor)
 			.setTitle(`Information sur le salon textuel : ${channel.name}`)
 			.setThumbnail(icon)
@@ -71,20 +71,20 @@ module.exports.run = async(bot, message, args) => {
 					value: moment(channel.createdAt).format('[le] DD/MM/YYYY [à] HH:mm:ss'),
 					inline: false
 				}
-			)
+			);
 
 
-   		message.channel.send(embed)
-   		return console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | salon textuel : ${channel.name}(${channel.id})`)
-	}
-	
+   		return message.channel.send(embed),
+   		console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | salon textuel : ${channel.name}(${channel.id})`);
+	};
+
 
 
 	//si c'est une catégorie
 	if (channel.type === 'category') {
 
 
-		const embed = new Discord.MessageEmbed()
+		const embed = new MessageEmbed()
 			.setColor(embedColor)
 			.setTitle(`Information sur la catégorie : ${channel.name}`)
 			.setThumbnail(icon)
@@ -115,14 +115,14 @@ module.exports.run = async(bot, message, args) => {
 					name: `📆 | Date de création`,
 					value: moment(channel.createdAt).format('[le] DD/MM/YYYY [à] HH:MM:SS')
 				}
-			)
+			);
 
 
 
 
-		message.channel.send(embed)
-		return console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | catégorie : ${channel.name}(${channel.id})`)
-	}
+		return message.channel.send(embed),
+		console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | catégorie : ${channel.name}(${channel.id})`);
+	};
 
 
 
@@ -130,7 +130,7 @@ module.exports.run = async(bot, message, args) => {
 	if(channel.type === 'voice') {
 
 
-		const embed = new Discord.MessageEmbed()
+		const embed = new MessageEmbed()
 			.setThumbnail(icon)
 			.setColor(embedColor)
 			.setTitle(`Information sur le salon vocal : ${channel.name}`)
@@ -167,17 +167,17 @@ module.exports.run = async(bot, message, args) => {
 					value: moment(channel.createdAt).format('[le] DD/MM/YYYY [à] HH:MM:SS'),
 					inline: false
 				}
-			)
+			);
 
 
-		message.channel.send(embed)
-		return console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | salon vocal : ${channel.name}(${channel.id})`)
-	}
+		return message.channel.send(embed),
+		console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | salon vocal : ${channel.name}(${channel.id})`);
+	};
 
 
-	return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, je ne trouve pas le type du salon! Il m'est donc impossible d'affiché ses informations.`),
-	console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | détails : type du channel introuvable`)
-}
+	return message.channel.send(`${cross} Erreur | ${message.author.username}, je ne trouve pas le type du salon! Il m'est donc impossible d'affiché ses informations.`),
+	console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | détails : type du channel introuvable`);
+};
 
 module.exports.help = {
 	name: "channelinfo",
@@ -186,4 +186,4 @@ module.exports.help = {
 	usage: "channelinfo [channel]",
 	example: ["channelinfo", "channelinfo #support"],
 	categories: "info"
-}
+};

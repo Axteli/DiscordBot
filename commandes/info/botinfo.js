@@ -1,8 +1,9 @@
-const Discord = require('discord.js')
-const emote = require('../../config/emote.json')
-const config = require('../../config/config.json')
-const moment = require('moment')
-module.exports.run = async(bot, message, args) => {
+const Discord = require('discord.js');
+const emote = require('../../config/emote.json');
+const config = require('../../config/config.json');
+const moment = require('moment');
+
+module.exports.run = async(bot, message) => {
 
 	/*
 		S'il te plaît, essaye de modifier cette commande au minimum,
@@ -66,13 +67,14 @@ module.exports.run = async(bot, message, args) => {
 				value: `\`${Discord.version}\``,
 				inline: true
 			}
-		)
+		);
 
 
-	message.channel.send(embed)
-	console.log(`commande : botinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`)
+	message.channel.send(embed);
+	console.log(`commande : botinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`);
 
-}
+};
+
 module.exports.help = {
 	name: "botinfo",
 	aliases: "binfo",
@@ -81,4 +83,4 @@ module.exports.help = {
 	example: "botinfo",
 	categories: "info"
 	
-}
+};
