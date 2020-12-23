@@ -3,7 +3,7 @@ const { cross } = require('../../config/emote.json');
 const { embedColor } = require('../../config/config.json');
 const moment = require('moment');
 
-module.exports.run = async(message, args) => {
+module.exports.run = async (message, args) => {
 
 
 	const icon = message.guild.iconURL({ format: 'png', dynamic: true, size: 4096 });
@@ -12,7 +12,7 @@ module.exports.run = async(message, args) => {
 	//défnir le channel
 	if (!args[0]) {
 		var channel = message.channel;
-	}else{
+	} else {
 		var channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]);
 	};
 
@@ -20,20 +20,20 @@ module.exports.run = async(message, args) => {
 	//si aucun channel n'a été définis alors erreur
 	if (!channel) {
 		return message.channel.send(`${cross} Erreur | ${message.author.username}, je ne trouve pas le salon!`),
-		console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | détails : salon introuvable`);
+			console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | détails : salon introuvable`);
 	};
 
 
 
 	//si c'est un channel textuel
-	if(channel.type === 'text' || channel.type === 'news' || channel.type === 'store') {
+	if (channel.type === 'text' || channel.type === 'news' || channel.type === 'store') {
 
 
-   		const embed = new MessageEmbed()
+		const embed = new MessageEmbed()
 			.setColor(embedColor)
 			.setTitle(`Information sur le salon textuel : ${channel.name}`)
 			.setThumbnail(icon)
-			.setFooter(message.member.user.username, message.member.user.displayAvatarURL())		 
+			.setFooter(message.member.user.username, message.member.user.displayAvatarURL())
 
 			.addFields(
 				{
@@ -54,12 +54,12 @@ module.exports.run = async(message, args) => {
 				{
 					name: `🔞 | NSFW`,
 					value: channel.nsfw ? `oui` : `non`,
-					inline: true	
+					inline: true
 				},
 				{
 					name: `📙 | Catégorie`,
 					value: `${channel.parent !== null ? channel.parent : 'non-catégorisé'}\n${channel.parentID !== null ? `(${channel.parentID})` : ''}`,
-			 		inline:true
+					inline: true
 				},
 				{
 					name: `🎚 | Position dans la catégorie`,
@@ -74,8 +74,8 @@ module.exports.run = async(message, args) => {
 			);
 
 
-   		return message.channel.send(embed),
-   		console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | salon textuel : ${channel.name}(${channel.id})`);
+		return message.channel.send(embed),
+			console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | salon textuel : ${channel.name}(${channel.id})`);
 	};
 
 
@@ -99,7 +99,7 @@ module.exports.run = async(message, args) => {
 				{
 					name: `🆔 | Id`,
 					value: channel.id,
-					inline : true	
+					inline: true
 				},
 				{
 					name: `🛋 | Salons`,
@@ -121,13 +121,13 @@ module.exports.run = async(message, args) => {
 
 
 		return message.channel.send(embed),
-		console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | catégorie : ${channel.name}(${channel.id})`);
+			console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | catégorie : ${channel.name}(${channel.id})`);
 	};
 
 
 
 	//si c'est un channel vocal
-	if(channel.type === 'voice') {
+	if (channel.type === 'voice') {
 
 
 		const embed = new MessageEmbed()
@@ -171,12 +171,12 @@ module.exports.run = async(message, args) => {
 
 
 		return message.channel.send(embed),
-		console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | salon vocal : ${channel.name}(${channel.id})`);
+			console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | salon vocal : ${channel.name}(${channel.id})`);
 	};
 
 
 	return message.channel.send(`${cross} Erreur | ${message.author.username}, je ne trouve pas le type du salon! Il m'est donc impossible d'affiché ses informations.`),
-	console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | détails : type du channel introuvable`);
+		console.log(`commande : channelinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id}) | détails : type du channel introuvable`);
 };
 
 module.exports.help = {

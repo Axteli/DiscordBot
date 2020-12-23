@@ -3,7 +3,7 @@ const emote = require('../../config/emote.json');
 const config = require('../../config/config.json');
 const moment = require('moment');
 
-module.exports.run = async(bot, message) => {
+module.exports.run = async (bot, message) => {
 
 	/*
 		S'il te plaît, essaye de modifier cette commande au minimum,
@@ -27,19 +27,19 @@ module.exports.run = async(bot, message) => {
 		.setThumbnail(bot.user.displayAvatarURL({ format: 'png', dynamic: true, size: 2048 }))
 
 		.setDescription(
-			`DiscordBot est un bot discord entièrement développé et maintenu par Axtéli,`+
-			`un jeune développeur souhaitant partager son projet à toutes les `+
-			`personnes intéréssées par le fait d'avoir la base d'un bot de modération`+
+			`DiscordBot est un bot discord entièrement développé et maintenu par Axtéli,` +
+			`un jeune développeur souhaitant partager son projet à toutes les ` +
+			`personnes intéréssées par le fait d'avoir la base d'un bot de modération` +
 			`que tout le monde peut modifier pour en faire le sien.\n `
 		)
 
 		.setAuthor('Axtéli', 'https://cdn.discordapp.com/attachments/759782245354962975/759782276274978816/IMG_20200830_221605.jpg')
-			
+
 		.addFields(
 
 			{
 				name: `📕 | Préfixe`,
-				value: '`'+config.prefix+'`',
+				value: '`' + config.prefix + '`',
 				inline: true
 			},
 			{
@@ -59,7 +59,7 @@ module.exports.run = async(bot, message) => {
 			},
 			{
 				name: emote.logo.nodejs + ' | Version de nodejs',
-				value: `\`${process.version.replace('v','')}\``,
+				value: `\`${process.version.replace('v', '')}\``,
 				inline: true
 			},
 			{
@@ -82,5 +82,5 @@ module.exports.help = {
 	usage: "botinfo",
 	example: "botinfo",
 	categories: "info"
-	
+
 };

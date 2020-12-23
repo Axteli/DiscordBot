@@ -3,16 +3,16 @@ const { embedColor } = require('../../config/config.json');
 const moment = require('moment');
 const emote = require('../../config/emote.json');
 
-module.exports.run = async(message) => {
+module.exports.run = async (message) => {
 
 
 	var AFK = [];
 
-	if(!message.guild.afkChannel) {
+	if (!message.guild.afkChannel) {
 
 		AFK.push('aucun');
 
-	}else{
+	} else {
 
 		AFK.push(`${message.guild.afkChannel}`);
 
@@ -40,13 +40,13 @@ module.exports.run = async(message) => {
 		.setColor(embedColor)
 		.setTitle(`Information sur : ${message.guild.name}`)
 		.setThumbnail(message.guild.iconURL({ format: 'png', dynamic: true, size: 512 }))
-		
 
-	 	.addFields(
+
+		.addFields(
 			{
 				name: `📃 | Nom du serveur`,
 				value: message.guild.name,
-				inline : true
+				inline: true
 			},
 			{
 				name: `👑 | Fondateur`,
@@ -94,7 +94,7 @@ module.exports.run = async(message) => {
 				inline: true
 			},
 			{
-				name: emote.boost+` | Nombre de boost`,
+				name: emote.boost + ` | Nombre de boost`,
 				value: message.guild.premiumSubscriptionCount,
 				inline: true
 			},
@@ -115,7 +115,7 @@ module.exports.run = async(message) => {
 			}
 		);
 
-	
+
 	message.channel.send(embed);
 	console.log(`commande : serverinfo | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`);
 
