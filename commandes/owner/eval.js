@@ -4,23 +4,23 @@ const chalk = require('chalk');
 const config = require('../../config/config.json');
 const emote = require('../../config/emote.json');
 
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async (bot, message, args) => {
 
 
 
-	if(message.author.id === config.owner1 || message.author.id === config.owner2) {
+	if (message.author.id === config.owner1 || message.author.id === config.owner2) {
 
 
-		
-		if(!args.slice(0).join(" ")) {
+
+		if (!args.slice(0).join(" ")) {
 			return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, il faut préciser une valeur!`),
-			 console.log(`commande : eval | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : aucune valeur précisé`);
+				console.log(`commande : eval | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : aucune valeur précisé`);
 		};
 
 
 
 		const input = args.slice(0).join(" ");
-		const thumbnail = bot.user.displayAvatarURL({size: 1024});
+		const thumbnail = bot.user.displayAvatarURL({ size: 1024 });
 
 
 
@@ -55,7 +55,7 @@ module.exports.run = async(bot, message, args) => {
 
 
 
-		}catch(err) {
+		} catch (err) {
 
 
 
@@ -64,7 +64,7 @@ module.exports.run = async(bot, message, args) => {
 				.setTitle('Eval')
 				.setDescription('Une erreur s\'est produite!')
 				.addField('Entrée', input)
-				.addField('Erreur',  err)
+				.addField('Erreur', err)
 				.setColor(config.embedColor);
 
 
@@ -76,11 +76,11 @@ module.exports.run = async(bot, message, args) => {
 
 
 
-	}else{
+	} else {
 
 		message.channel.send(`${emote.cross} Erreur | ${message.author.username}, cette commande est réservé au administrateur du bot!`)
 		console.log(`commande : eval | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : ${message.author.tag} n'est pas admin du bot`);
-	
+
 	};
 
 
