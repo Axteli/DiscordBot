@@ -1,6 +1,6 @@
-const Discord = require("discord.js")
-const fs = require('fs')
-const config = require("./config/config.json")
+const Discord = require("discord.js");
+const fs = require('fs');
+const config = require("./config/config.json");
 const bot = new Discord.Client();
 
 bot.commands = new Discord.Collection();
@@ -17,4 +17,4 @@ bot.categories = fs.readdirSync('./commandes/');
 });
 
 
-bot.login(config.token)
+bot.login(config.token);
