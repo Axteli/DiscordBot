@@ -1,53 +1,70 @@
-const Discord = require('discord.js')
-const config = require('../../config/config.json')
-const chalk = require('chalk')
-const emote = require('../../config/emote.json')
-module.exports.run = async(bot, message, args) => {    
-    
+const { MessageEmbed } = require('discord.js');
+const config = require('../../config/config.json');
+const { bgRed } = require('chalk');
+const emote = require('../../config/emote.json');
 
-    if(message.author.id === config.owner1 || message.author.id === config.owner2) {
+module.exports.run = async(bot, message) => {    
+	
 
-        const offline = emote.status.offline
+	if(message.author.id === config.owner1 || message.author.id === config.owner2) {
 
-        //envoyer le log d'extinction
-        const channel = bot.channels.cache.get(`${config.logsChannel}`);
-        if (!channel) {
-
-            message.channel.send(`${emote.cross} Erreur | ${message.author.username}, je ne trouve pas le salon des logs!`)
-        }else{
-
-            const embed = new Discord.MessageEmbed()
-             .setColor(`#00000`)
-             .setDescription(`${offline} | Le bot s'éteint`)
-             .setTimestamp()
-            await channel.send(embed).then(
-
-                console.log('log d\'extinction envoyé!')
-
-            )
-        }
-
-        console.log(chalk.bgRed(`Le bot s'éteint`));
-
-        bot.user.setStatus('invisible');
+		console.log(bgRed(`Le bot s'éteint`));
+		bot.user.setStatus('invisible');
 
 
-        //envoyer le message 
-        message.channel.send(`${offline} | Le bot s'éteint`).then( () => {
-            process.exit()
-        })
+
+		const offline = emote.status.offline;
 
 
-    } else {
+		//envoyer le log d'extinction
+		const channel = bot.channels.cache.get(`${config.logsChannel}`);
 
-        //envoyer le message d'erreur si la personne n'est pas owner du bot
-        message.channel.send(`${emote.cross} Erreur | ${message.author.username}, cette commande est réservé au administrateur du bot!`)
-         console.log(`commande : stop | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : ${message.author.tag} n'est pas admin du bot`);
-    }
+		if (!channel) {
 
-}
+			message.channel.send(`${emote.cross} Erreur | ${message.author.username}, je ne trouve pas le salon des logs!`);
+		
+		}else{
+
+			const embed = new MessageEmbed()
+				.setColor(`#00000`)
+				.setDescription(`${offline} | Le bot s'éteint`)
+				.setTimestamp();
+
+
+			await channel.send(embed).then(
+
+				console.log('log d\'extinction envoyé!')
+
+			);
+		};
+
+		
+
+
+
+		//envoyer le message 
+		message.channel.send(`${offline} | Le bot s'éteint`).then( () => {
+			process.exit();
+		});
+
+
+	} else {
+
+		//envoyer le message d'erreur si la personne n'est pas owner du bot
+		message.channel.send(`${emote.cross} Erreur | ${message.author.username}, cette commande est réservé au administrateur du bot!`);
+		 console.log(`commande : stop | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : ${message.author.tag} n'est pas admin du bot`);
+	};
+
+
+};
+
+
 module.exports.help = {
-        name: "stop"
-    }
+		name: "stop",
+		description: "Eteint le bot.",
+		usage: "stop",
+		example: "stop",
+		categories: "owner"
+	}
 
 
