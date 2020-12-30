@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js')
 const { red, blue } = require('chalk')
 const config = require('../../config/config.json')
-const { online } = require('../../config/emote.json')
+const { status } = require('../../config/emote.json')
 
 module.exports = (bot) => {
 
@@ -99,7 +99,7 @@ module.exports = (bot) => {
 
 		const embed = new MessageEmbed()
 			.setColor(`GREEN`)
-			.setDescription(`${online} | Le bot est allumé!`)
+			.setDescription(`${status.online} | Le bot est allumé!`)
 			.setTimestamp();
 
 
