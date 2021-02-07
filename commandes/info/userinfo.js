@@ -102,7 +102,7 @@ module.exports.run = async (_bot, message, args) => {
 			},
 			{
 				name: "📆 | Date d'arrivée",
-				value: moment(member.user.joinedAt).format('[le] DD/MM/YYYY [à] HH:mm:ss'),
+				value: moment(member.joinedAt).format('[le] DD/MM/YYYY [à] HH:mm:ss'),
 				inline: true
 			}
 		);
