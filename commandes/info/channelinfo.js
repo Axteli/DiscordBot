@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const { cross } = require('../../config/emote.json');
 const { embedColor } = require('../../config/config.json');
 const moment = require('moment');
@@ -29,7 +29,7 @@ module.exports.run = async (_bot, message, args) => {
 	if (channel.type === 'text' || channel.type === 'news' || channel.type === 'store') {
 
 
-		const embed = new Discord.MessageEmbed()
+		const embed = new MessageEmbed()
 			.setColor(embedColor)
 			.setTitle(`Information sur le salon textuel : ${channel.name}`)
 			.setThumbnail(icon)
@@ -84,7 +84,7 @@ module.exports.run = async (_bot, message, args) => {
 	if (channel.type === 'category') {
 
 
-		const embed = new Discord.MessageEmbed()
+		const embed = new MessageEmbed()
 			.setColor(embedColor)
 			.setTitle(`Information sur la catégorie : ${channel.name}`)
 			.setThumbnail(icon)
@@ -109,11 +109,12 @@ module.exports.run = async (_bot, message, args) => {
 				{
 					name: `🎚 | Position`,
 					value: channel.rawPosition,
-					inline: false
+					inline: true
 				},
 				{
 					name: `📆 | Date de création`,
-					value: moment(channel.createdAt).format('[le] DD/MM/YYYY [à] HH:MM:SS')
+					value: moment(channel.createdAt).format('[le] DD/MM/YYYY [à] HH:MM:SS'),
+					inline: true
 				}
 			);
 
@@ -130,7 +131,7 @@ module.exports.run = async (_bot, message, args) => {
 	if (channel.type === 'voice') {
 
 
-		const embed = new Discord.MessageEmbed()
+		const embed = new MessageEmbed()
 			.setThumbnail(icon)
 			.setColor(embedColor)
 			.setTitle(`Information sur le salon vocal : ${channel.name}`)

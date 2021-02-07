@@ -27,9 +27,9 @@ module.exports.run = async (bot, message) => {
 		.setThumbnail(bot.user.displayAvatarURL({ format: 'png', dynamic: true, size: 2048 }))
 
 		.setDescription(
-			`DiscordBot est un bot discord entièrement développé et maintenu par Axtéli,` +
+			`DiscordBot est un bot discord entièrement développé et maintenu par Axtéli, ` +
 			`un jeune développeur souhaitant partager son projet à toutes les ` +
-			`personnes intéréssées par le fait d'avoir la base d'un bot de modération` +
+			`personnes intéréssées par le fait d'avoir la base d'un bot de modération ` +
 			`que tout le monde peut modifier pour en faire le sien.\n `
 		)
 
@@ -54,7 +54,7 @@ module.exports.run = async (bot, message) => {
 			},
 			{
 				name: '⚖ | Licence',
-				value: `[MIT](https://github.com/Axteli/DiscordBot/blob/master/LICENSE)`,
+				value: `[GPL-3.0](https://github.com/Axteli/DiscordBot/blob/master/LICENSE)`,
 				inline: true
 			},
 			{

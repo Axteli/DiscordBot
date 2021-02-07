@@ -1,19 +1,19 @@
 const { MessageEmbed } = require('discord.js')
 const config = require('../../config/config.json')
-const emote = require('../../config/emote.json')
+const { cross, nani } = require('../../config/emote.json')
 module.exports.run = async (bot, message, args) => {
 
 
 
 	//vérifie les permissions
 	if (!message.member.hasPermission('KICK_MEMBERS')) {
-		return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, tu n'as pas la permission de kick!`),
+		return message.channel.send(`${cross} Erreur | ${message.author.username}, tu n'as pas la permission de kick!`),
 			console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : ${message.author.username} n'as pas la permission de kick`);
 	};
 
 
 	if (!message.guild.me.hasPermission("KICK_MEMBERS")) {
-		return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, je n\'est pas la permission de kick !`),
+		return message.channel.send(`${cross} Erreur | ${message.author.username}, je n\'est pas la permission de kick !`),
 			console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : le bot n'as pas la permission de kick`);
 	};
 
@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
 
 	//vérifie que quelqu'un a été mentionné
 	if (!args[0]) {
-		return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, tu n'as pas précisé qui je dois kick!`),
+		return message.channel.send(`${cross} Erreur | ${message.author.username}, tu n'as pas précisé qui je dois kick!`),
 			console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : personne n'a été précisé`);
 	};
 
@@ -34,7 +34,7 @@ module.exports.run = async (bot, message, args) => {
 
 	//si member est = a rien return
 	if (!member) {
-		return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, je ne trouve pas cet utilisateur :/`),
+		return message.channel.send(`${cross} Erreur | ${message.author.username}, je ne trouve pas cet utilisateur :/`),
 			console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : l'utilisateur est introuvable`);
 	};
 
@@ -48,27 +48,27 @@ module.exports.run = async (bot, message, args) => {
 
 
 	if (member.id === message.author) {
-		return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, tu ne peux pas te kick toi-meme!`),
+		return message.channel.send(`${cross} Erreur | ${message.author.username}, tu ne peux pas te kick toi-meme!`),
 			console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : a essayé de se kick sois-meme`);
 	};
 
 
 	if (member === config.owner1 || member === config.owner2) {
-		return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, tu essaye de kick mon fondateur? ${emote.nani}`),
+		return message.channel.send(`${cross} Erreur | ${message.author.username}, tu essaye de kick mon fondateur? ${nani}`),
 			console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : a essayé de kick un fondateur`);
 	};
 
 
 	//verifie si la personne est kickable
 	if (!member.kickable) {
-		return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, je ne peux pas kicker cet personne probablement car il a un role au dessus du miens`),
+		return message.channel.send(`${cross} Erreur | ${message.author.username}, je ne peux pas kicker cet personne probablement car il a un role au dessus du miens`),
 			console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : la personne ne peut pas etre kick par le bot`);
 	};
 
 
 	//vérifie si la personne à kick n'est pas plus haut gradé
 	if (message.member.roles.highest.comparePositionTo(member.roles.highest) < 1 && message.author.id !== message.guild.ownerID) {
-		return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, tu ne peux pas kick quelqu'un plus haut gradé que toi!`),
+		return message.channel.send(`${cross} Erreur | ${message.author.username}, tu ne peux pas kick quelqu'un plus haut gradé que toi!`),
 			console.log(`commande : kick | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : a essayé de kick un membre plus haut gradé`);
 	};
 
@@ -93,7 +93,7 @@ module.exports.run = async (bot, message, args) => {
 	member.send(kickmp).then(_msg => {
 
 		member.kick(`${reason} | Par : ${message.author.tag} (${message.author.id})`)
-			.catch(err => { return message.channel.send('je n\'ai pas réussi à kick le membre! Tu ne devrais jamais recevoir une erreur comme celle-ci... erreur: '+err) });
+			.catch(err => { return message.channel.send('je n\'ai pas réussi à kick le membre! Tu ne devrais jamais recevoir une erreur comme celle-ci... erreur: ' + err) });
 
 	}).then(() => {
 

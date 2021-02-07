@@ -1,4 +1,4 @@
-const emote = require('../../config/emote.json');
+const { tick, cross } = require('../../config/emote.json');
 
 module.exports.run = async (bot, message, args) => {
 
@@ -6,13 +6,13 @@ module.exports.run = async (bot, message, args) => {
 
 	//vérifie les permissions
 	if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-		return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, tu n'as pas la permission "gérer les messages"!`),
+		return message.channel.send(`${cross} Erreur | ${message.author.username}, tu n'as pas la permission "gérer les messages"!`),
 			console.log(`commande : clear | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : ${message.author.username} n'as pas la permission gérer les messages.`);
 	};
 
 
 	if (!message.channel.permissionsFor(bot.user).has('MANAGE_MESSAGES')) {
-		return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, je n'est pas la permission "gérer les message"!`),
+		return message.channel.send(`${cross} Erreur | ${message.author.username}, je n'est pas la permission "gérer les message"!`),
 			console.log(`commande : clear | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : le bot n'as pas la permission gérer les messages.`);
 	};
 
@@ -21,14 +21,14 @@ module.exports.run = async (bot, message, args) => {
 
 	//vérifier qu'un nombre est entré
 	if (!args[0] || args[0] === '0') {
-		return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, merci d'entrer un nombre entre 1 et 100`),
+		return message.channel.send(`${cross} Erreur | ${message.author.username}, merci d'entrer un nombre entre 1 et 100`),
 			console.log(`commande : clear | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : aucun nombre rentré`);
 	};
 
 
 	//vérifier qu'un nombre et pas une lettre est bien rentré
 	if (isNaN(args[0])) {
-		return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, il faut rentrer un nombre!`),
+		return message.channel.send(`${cross} Erreur | ${message.author.username}, il faut rentrer un nombre!`),
 			console.log(`commande : clear | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : la valeur rentrée n'est pas un nombre`);
 	};
 
@@ -54,14 +54,14 @@ module.exports.run = async (bot, message, args) => {
 		message.channel.bulkDelete(deleteAmount, true)
 			.catch(() => {
 
-				return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, je n'ai pas réussi à clear les messages!`),
+				return message.channel.send(`${cross} Erreur | ${message.author.username}, je n'ai pas réussi à clear les messages!`),
 					console.log(`commande : clear | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`);
 
 			}).then((messages) => {
 
 
 				//envoyé le message de finalisation
-				message.channel.send(`${emote.tick} | ${message.author.username}, \`${messages.size} messages\` ont été supprimés!`)
+				message.channel.send(`${tick} | ${message.author.username}, \`${messages.size} messages\` ont été supprimés!`)
 					.then(msg => {
 
 						//supprime le message au bout de 3sec

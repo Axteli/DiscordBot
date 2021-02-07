@@ -1,25 +1,25 @@
-const Discord = require('discord.js');
-const emote = require('../../config/emote.json');
-const config = require('../../config/config.json');
+const { MessageEmbed } = require('discord.js');
+const { cross } = require('../../config/emote.json');
+const { embedColor } = require('../../config/config.json');
 module.exports.run = async (bot, message, args) => {
 
 
 
 	//vérifie les permission
 	if (!message.member.hasPermission("BAN_MEMBERS")) {
-		return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, tu ne peux pas dé-bannir!`),
+		return message.channel.send(`${cross} Erreur | ${message.author.username}, tu ne peux pas dé-bannir!`),
 			console.log(`commande : unban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : ${message.author.username} n'as pas la permission de dé-bannir`);
 	};
 
 	if (!message.guild.me.hasPermission("BAN_MEMBERS")) {
-		return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, je n\'ai pas la permission de dé-bannir !`),
+		return message.channel.send(`${cross} Erreur | ${message.author.username}, je n\'ai pas la permission de dé-bannir !`),
 			console.log(`commande : unban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : le bot n'as pas la permission de dé-bannir`);
 	};
 
 
 
 	if (!args[0]) {
-		return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, il faut préciser un utilisateur!`),
+		return message.channel.send(`${cross} Erreur | ${message.author.username}, il faut préciser un utilisateur!`),
 			console.log(`commande : unban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : le bot n'as pas la permission de dé-bannir`);
 	};
 
@@ -30,7 +30,7 @@ module.exports.run = async (bot, message, args) => {
 	try {
 		member = await bot.users.fetch(args[0]);
 	} catch (_e) {
-		return message.channel.send(`${emote.cross} Erreur | ${message.author.username}, je ne trouve pas l'utilisateur!`),
+		return message.channel.send(`${cross} Erreur | ${message.author.username}, je ne trouve pas l'utilisateur!`),
 			console.log(`commande : unban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : utilisateur introuvable`);
 	};
 
@@ -47,28 +47,28 @@ module.exports.run = async (bot, message, args) => {
 		if (user) {
 
 
-			const embed = new Discord.MessageEmbed()
+			const embed = new MessageEmbed()
 				.setThumbnail(user.user.displayAvatarURL({ size: 1024 }))
 				.setTitle(`Membre unban`)
-				.setColor(config.embedColor)
+				.setColor(embedColor)
 				.setDescription(
 					`Membre : ${user.user}\nPar : ${message.author.tag}\n Raison de ban :` +
-					user.reason != null ? user.reason : 'aucune' + `\nRaison de deban : ` + reason
-					);
+						user.reason != null ? user.reason : 'aucune' + `\nRaison de deban : ` + reason
+				);
 
 			message.guild.members.unban(user.user.id, reason + `| Par : ${message.author.tag} (${message.author.id})`)
 				.then(() => {
 
 					message.channel.send(embed);
 					console.log(`commande : unban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})`);
-				
+
 				});
 
 
 		} else {
 
-			message.channel.send(`${emote.cross} Erreur | ${member.tag} n'est pas banni!`),
-			console.log(`commande : unban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : l'utilisateur n'est pas banni`);
+			message.channel.send(`${cross} Erreur | ${member.tag} n'est pas banni!`),
+				console.log(`commande : unban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| détails : l'utilisateur n'est pas banni`);
 
 		};
 
@@ -76,7 +76,7 @@ module.exports.run = async (bot, message, args) => {
 	}).catch(e => {
 
 		message.channel.send('Une erreur s\'est produite!'),
-		console.log(`commande : unban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| erreur: `+ e);
+			console.log(`commande : unban | par : ${message.author.tag} (${message.author.id}) | dans : ${message.channel.name} (${message.channel.id})| serveur : ${message.guild} (${message.guild.id})| erreur: ` + e);
 
 	});
 
