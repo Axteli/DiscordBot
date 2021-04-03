@@ -10,7 +10,7 @@ bot.example = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 bot.categories = fs.readdirSync('./commandes/');
 
-
+Timer = Date.now();
 
 ["command", "event"].forEach(handler => {
 	require(`./handlers/${handler}`)(bot);

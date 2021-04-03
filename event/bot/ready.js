@@ -137,4 +137,6 @@ module.exports = (bot) => {
 
 	console.log(blue(`\n------------------------\n`));
 
+	console.log("Terminé! (" + (Date.now() - Timer) + "ms)")
+
 };
